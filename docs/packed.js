@@ -28461,17 +28461,15 @@ const customService = {
 
   const cameraKit = await bootstrapCameraKit({
     apiToken: 'eyJhbGciOiJIUzI1NiIsImtpZCI6IkNhbnZhc1MyU0hNQUNQcm9kIiwidHlwIjoiSldUIn0.eyJhdWQiOiJjYW52YXMtY2FudmFzYXBpIiwiaXNzIjoiY2FudmFzLXMyc3Rva2VuIiwibmJmIjoxNzA2NzExNzk4LCJzdWIiOiJhNWQ0ZjU2NC0yZTM0LTQyN2EtODI1Ni03OGE2NTFhODc0ZTR-U1RBR0lOR35mMzBjN2JmNy1lNjhjLTRhNzUtOWFlNC05NmJjOTNkOGIyOGYifQ.xLriKo1jpzUBAc1wfGpLVeQ44Ewqncblby-wYE1vRu0'
-  }, function(container) {
-    container.provides(
+  }, (container) =>
+  container.provides(
       Injectable(
-        remoteApiServicesFactory.token,
-        [remoteApiServicesFactory.token],
-        function(existing) {
-          return [...existing, customService];
-        }
+          remoteApiServicesFactory.token,
+          [remoteApiServicesFactory.token],
+          (existing) => [...existing, customService]
       )
-    );
-  });
+  )
+);
 
     // The rest of your initialization code remains unchanged
     const session = await cameraKit.createSession();
