@@ -35717,16 +35717,14 @@ function createImageSource(image, options = {}) {
     apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
     getRequestHandler: function(request) {
       // Copy "your promo code" to clipboard
-      navigator.clipboard.writeText("your promo code").then(function() {
+      navigator.clipboard.writeText("PROMO CODE HERE").then(function() {
         console.log('Promo code copied to clipboard successfully!');
+    
+        // Redirect to the URL after successfully copying the promo code
+        window.location.href = 'https://jahez.link/EFoKQj3nlHb';
       }, function(err) {
         console.error('Failed to copy promo code to clipboard: ', err);
       });
-
-      // Redirect after 1 second delay
-      setTimeout(function() {
-        window.location.href = 'https://www.google.co.in';
-      }, 1000); // 1000 milliseconds = 1 second
     }
   };
 
