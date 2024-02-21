@@ -35746,6 +35746,16 @@ function createImageSource(image, options = {}) {
     )
   );
 
+  // Request Device Orientation Permission
+if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+  DeviceOrientationEvent.requestPermission();
+}
+
+// Request Device Motion Permission
+if (typeof DeviceMotionEvent !== 'undefined' && typeof DeviceMotionEvent.requestPermission === 'function') {
+  DeviceMotionEvent.requestPermission();
+}
+
   // Request camera permission and create session
   let mediaStream = await navigator.mediaDevices.getUserMedia({
     video: { width: 4096, height: 2160, facingMode: 'environment' }
