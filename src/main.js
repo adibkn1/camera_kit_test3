@@ -19,7 +19,7 @@ import {
         // Copy text to clipboard and redirect
         navigator.clipboard.writeText("PROMO CODE HERE").then(function() {
           console.log('Copying to clipboard was successful!');
-          window.location.href = "https://www.google.com";
+          window.location.href = "https://jahez.link/EFoKQj3nlHb";
         }, function(err) {
           console.error('Could not copy text:', err);
         });
