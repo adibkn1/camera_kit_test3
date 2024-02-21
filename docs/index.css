@@ -44,14 +44,23 @@ body {
 
   #copyButton {
     position: fixed;
-    bottom: 25%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     background-color: red;
     color: white;
     border: none;
-    border-radius: 10px;
-    padding: 25px 60px;
+    border-radius: 20px;
+    padding: 10px 20px;
     cursor: pointer;
     display: none; /* Initially hidden */
+    font-size: 16px; /* Adjust font size for desktop */
+}
+
+/* Media query for devices with a max width of 600px */
+@media (max-width: 600px) {
+    #copyButton {
+        padding: 15px 30px; /* Increase padding for larger touch targets */
+        font-size: 18px; /* Increase font size for better readability */
+    }
 }
