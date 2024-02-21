@@ -35716,12 +35716,21 @@ function createImageSource(image, options = {}) {
   const customService = {
     apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
     getRequestHandler: function(request) {
-      
-      window.open('https://jahez.link/EFoKQj3nlHb', '_blank');
+      // Show the button when this function is triggered
+      var button = document.getElementById('copyButton');
+      button.style.display = 'block'; // Make the button visible
 
-}
-
-    
+      // Ensure the click event listener is only attached once
+      button.onclick = function() {
+        // Copy text to clipboard and redirect
+        navigator.clipboard.writeText("PROMO CODE HERE").then(function() {
+          console.log('Copying to clipboard was successful!');
+          window.location.href = "https://www.google.com";
+        }, function(err) {
+          console.error('Could not copy text:', err);
+        });
+      };
+    }
   };
 
   // Initialize Camera Kit
@@ -35741,32 +35750,6 @@ function createImageSource(image, options = {}) {
   let mediaStream = await navigator.mediaDevices.getUserMedia({
     video: { width: 4096, height: 2160, facingMode: 'environment' }
   });
-
-  // Function to request motion and orientation permissions
-  async function requestMotionAndOrientationPermissions() {
-    // Request Device Motion Permission
-    if (typeof DeviceMotionEvent.requestPermission === 'function') {
-      try {
-        const motionPermission = await DeviceMotionEvent.requestPermission();
-        console.log(motionPermission === 'granted' ? 'Device motion permission granted' : 'Device motion permission not granted');
-      } catch (error) {
-        console.error('Error requesting device motion permission:', error);
-      }
-    }
-
-    // Request Device Orientation Permission
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-      try {
-        const orientationPermission = await DeviceOrientationEvent.requestPermission();
-        console.log(orientationPermission === 'granted' ? 'Device orientation permission granted' : 'Device orientation permission not granted');
-      } catch (error) {
-        console.error('Error requesting device orientation permission:', error);
-      }
-    }
-  }
-
-  // Call the function to request motion and orientation permissions after camera permission
-  await requestMotionAndOrientationPermissions();
 
   // Continue with your session setup
   const session = await cameraKit.createSession();

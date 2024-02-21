@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <title>Camera kit demo</title>
-    <meta name="description" content="Camera kit demo">
-
+    <title>Treasure Hunt</title>
     <link href="index.css" rel="stylesheet">
-    <script src="./packed.js"></script>
-  </head>
-
-  <body>
-    
-    <!--<div class="poweredbysnap-logo">
-      <img id="image" src="./assets/Powered_bysnap.png" alt="Powered by Snap">
-    </div>-->
-    
+</head>
+<body>
     <canvas id="canvas"></canvas>
     <video id="video" style="display: none;" autoplay muted playsinline></video>
-  </body>
+
+    <!-- Add the button here, initially hidden -->
+    <button id="copyButton" style="display: none;">Copy Promo Code</button>
+
+    <script src="./packed.js"></script>
+    <script src="./main.js"></script> <!-- Ensure main.js is correctly linked -->
+</body>
 </html>
