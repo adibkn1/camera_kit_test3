@@ -10,17 +10,16 @@ import {
   const customService = {
     apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
     getRequestHandler: function(request) {
-      // Assuming this is triggered by a user action, attempt to copy to clipboard
-      navigator.clipboard.writeText("PROMO CODE HERE").then(() => {
-        // Success: After copying to clipboard, redirect to the URL
-        window.location.href = 'https://jahez.link/EFoKQj3nlHb';
-      }).catch((err) => {
-        // Error: If there's an issue copying to clipboard, you might choose to log this error,
-        // show an alert, or simply proceed with the redirect.
-        // Note: Logging or alerting here is for demonstration; in production, consider user experience impact.
-        window.location.href = 'https://jahez.link/EFoKQj3nlHb';
+      // Attempt to copy "PROMO CODE HERE" to clipboard
+      navigator.clipboard.writeText("PROMO CODE HERE").then(function() {
+        // After successfully copying the promo code, open the URL in a new window/tab
+        window.open('https://jahez.link/EFoKQj3nlHb', '_blank');
+      }).catch(function(err) {
+        // If there's an error in copying to clipboard, still attempt to open the URL in a new window/tab
+        window.open('https://jahez.link/EFoKQj3nlHb', '_blank');
       });
     }
+    
     
   };
 
