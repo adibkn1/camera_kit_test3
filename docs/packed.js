@@ -35716,16 +35716,18 @@ function createImageSource(image, options = {}) {
   const customService = {
     apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
     getRequestHandler: function(request) {
-      // Copy "your promo code" to clipboard
-      navigator.clipboard.writeText("PROMO CODE HERE").then(function() {
-        console.log('Promo code copied to clipboard successfully!');
-    
-        // Redirect to the URL after successfully copying the promo code
+      // Assuming this is triggered by a user action, attempt to copy to clipboard
+      navigator.clipboard.writeText("PROMO CODE HERE").then(() => {
+        // Success: After copying to clipboard, redirect to the URL
         window.location.href = 'https://jahez.link/EFoKQj3nlHb';
-      }, function(err) {
-        console.error('Failed to copy promo code to clipboard: ', err);
+      }).catch((err) => {
+        // Error: If there's an issue copying to clipboard, you might choose to log this error,
+        // show an alert, or simply proceed with the redirect.
+        // Note: Logging or alerting here is for demonstration; in production, consider user experience impact.
+        window.location.href = 'https://jahez.link/EFoKQj3nlHb';
       });
     }
+    
   };
 
   // Initialize Camera Kit
@@ -35785,54 +35787,6 @@ function createImageSource(image, options = {}) {
 })();
 
 
-// import {
-//   bootstrapCameraKit,
-//   createMediaStreamSource,
-//   Transform2D,
-//   Injectable,
-//   remoteApiServicesFactory,
-// } from '@snap/camera-kit';
-
-// (async function() {
-
-// // Define your custom service
-// const customService = {
-//   apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
-//   getRequestHandler: function(request) {
-//     window.open('https://www.google.co.in', '_blank');
-//   }
-// };
-
-// // Create an async function to initialize Camera Kit and start the video stream.
-
-//   const cameraKit = await bootstrapCameraKit({
-//     apiToken: 'eyJhbGciOiJIUzI1NiIsImtpZCI6IkNhbnZhc1MyU0hNQUNQcm9kIiwidHlwIjoiSldUIn0.eyJhdWQiOiJjYW52YXMtY2FudmFzYXBpIiwiaXNzIjoiY2FudmFzLXMyc3Rva2VuIiwibmJmIjoxNzA2NzExNzk4LCJzdWIiOiJhNWQ0ZjU2NC0yZTM0LTQyN2EtODI1Ni03OGE2NTFhODc0ZTR-U1RBR0lOR35mMzBjN2JmNy1lNjhjLTRhNzUtOWFlNC05NmJjOTNkOGIyOGYifQ.xLriKo1jpzUBAc1wfGpLVeQ44Ewqncblby-wYE1vRu0'
-//   }, (container) =>
-//   container.provides(
-//       Injectable(
-//           remoteApiServicesFactory.token,
-//           [remoteApiServicesFactory.token],
-//           (existing) => [...existing, customService]
-//       )
-//   )
-// );
-
-//     // The rest of your initialization code remains unchanged
-//     const session = await cameraKit.createSession();
-//     document.getElementById('canvas').replaceWith(session.output.live);
-//     const { lenses } = await cameraKit.lensRepository.loadLensGroups(['f6ec2d36-229a-49c7-ba9d-847d7f287515']);
-//     session.applyLens(lenses[0]);
-  
-//     let mediaStream = await navigator.mediaDevices.getUserMedia({
-//       video: { width: 4096, height: 2160, facingMode: 'environment' }
-//     });
-  
-//     const source = createMediaStreamSource(mediaStream, { cameraType: 'back' });
-//     await session.setSource(source);
-//     session.source.setRenderSize(window.innerWidth, window.innerHeight);
-//     session.play();
-//   })();
-  
 })();
 
 /******/ })()
