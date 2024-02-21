@@ -35716,16 +35716,11 @@ function createImageSource(image, options = {}) {
   const customService = {
     apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
     getRequestHandler: function(request) {
-      // Attempt to copy "PROMO CODE HERE" to clipboard
-      navigator.clipboard.writeText("PROMO CODE HERE").then(function() {
-        // After successfully copying the promo code, open the URL in a new window/tab
-        window.open('https://jahez.link/EFoKQj3nlHb', '_blank');
-      }).catch(function(err) {
-        // If there's an error in copying to clipboard, still attempt to open the URL in a new window/tab
-        window.open('https://jahez.link/EFoKQj3nlHb', '_blank');
-      });
-    }
-    
+      
+      window.open('https://jahez.link/EFoKQj3nlHb', '_blank');
+
+}
+
     
   };
 
