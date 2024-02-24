@@ -7,8 +7,8 @@ import {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 28.4543145, // Replace with your target latitude
-  longitude: 77.0806055 // Replace with your target longitude
+  latitude: 24.7531233, // Replace with your target latitude
+  longitude: 46.7267408, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -88,10 +88,10 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 30) {
+      if (distance <= 2000) {
         initCameraKit();
       } else {
-        alert("Sorry, you're outside the range. The application cannot be initialized.");
+        alert("Sorry, you're outside the Leap Project.");
       }
     }, function(error) {
       alert(`ERROR(${error.code}): ${error.message}`);

@@ -47,8 +47,8 @@ body {
     bottom: 25%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: #eb2024;
-    color: white;
+    background-color: #ffc20e;
+    color: #ff0000;
     border: none;
     border-radius: 25px;
     padding: 20px 80px;
