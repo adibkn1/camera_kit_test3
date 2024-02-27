@@ -88,7 +88,7 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 2000) {
+      if (distance <= 200000000000000000000000) {
         initCameraKit();
       } else {
         alert("Sorry, you're outside the Leap Project.");
