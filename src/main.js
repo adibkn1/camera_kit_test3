@@ -34,7 +34,7 @@ function initCameraKit() {
       apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
       getRequestHandler: function(request) {
         // Fetch a random unredeemed coupon from Firestore
-        db.collection('coupons').where('redeemed', '==', false).limit(1).get()
+        window.db.collection('coupons').where('redeemed', '==', false).limit(1).get()
           .then(snapshot => {
             if (!snapshot.empty) {
               // Assuming each coupon document has 'code' and 'redeemed' fields
@@ -110,7 +110,7 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 2000) { // Check if within 2 km
+      if (distance <= 20000000000) { // Check if within 2 km
         initCameraKit();
       } else {
         alert("Sorry, you're outside the 2km range of the target location.");

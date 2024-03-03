@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>Jahez Leap Project</title>
@@ -13,12 +13,12 @@
     <!-- Add the button here, initially hidden -->
     <button id="copyButton" style="display: none;">Copy</button>
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <!-- Firebase SDKs -->
     <script type="module">
         // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-        
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore.js";
+
         // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBlnPWxGnDvy6fRs49gHxOyKUNOyYgxNUE",
@@ -33,12 +33,12 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // Expose db to the window object to use in main.js (not recommended for production)
+        // Make db accessible in main.js
         window.db = db;
     </script>
-    
-    <!-- Your packed and main JavaScript files -->
+
+    <!-- Your custom scripts -->
     <script src="./packed.js"></script>
-    <script src="./main.js" type="module"></script>
+    <script src="./main.js"></script>
 </body>
 </html>
