@@ -5,6 +5,28 @@ import {
   remoteApiServicesFactory,
 } from '@snap/camera-kit';
 
+// Define your target location coordinates
+const targetLocation = {
+  latitude: 24.7531233, // Replace with your target latitude
+  longitude: 46.7267408, // Replace with your target longitude
+};
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371e3; // metres
+  const φ1 = lat1 * Math.PI / 180; // φ, λ in radians
+  const φ2 = lat2 * Math.PI / 180;
+  const Δφ = (lat2 - lat1) * Math.PI / 180;
+  const Δλ = (lon2 - lon1) * Math.PI / 180;
+
+  const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
+    Math.cos(φ1) * Math.cos(φ2) *
+    Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+
+  const distance = R * c; // in metres
+  return distance;
+}
+
 function initCameraKit() {
   (async function() {
     // Define your custom service with a modified getRequestHandler function
@@ -56,5 +78,29 @@ function initCameraKit() {
   })();
 }
 
-// Call this function on page load or after a user interaction
-initCameraKit();
+function checkLocationAndInit() {
+  if ("geolocation" in navigator) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      const distance = calculateDistance(
+        position.coords.latitude,
+        position.coords.longitude,
+        targetLocation.latitude,
+        targetLocation.longitude
+      );
+
+      if (distance <= 200000000000000000000000) {
+        initCameraKit();
+      } else {
+        alert("Sorry, you're outside the Leap Project.");
+      }
+    }, function(error) {
+      alert(`ERROR(${error.code}): ${error.message}`);
+    }, {
+      maximumAge: 60000,
+      timeout: 5000,
+      enableHighAccuracy: true
+    });
+  } else {
+    alert("Geolocation is not supported by your browser.");
+  }
+}
