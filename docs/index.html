@@ -5,6 +5,9 @@
     <title>Jahez Leap Project</title>
     <link href="index.css" rel="stylesheet">
     <link rel="icon" href="assets/logo.png" type="image/png">
+    <!-- Firebase CSS & JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js"></script>
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -15,5 +18,20 @@
 
     <script src="./packed.js"></script>
     <script src="./main.js"></script> <!-- Ensure main.js is correctly linked -->
+    <script>
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+          apiKey: "AIzaSyBlnPWxGnDvy6fRs49gHxOyKUNOyYgxNUE",
+          authDomain: "jahez-coupon.firebaseapp.com",
+          projectId: "jahez-coupon",
+          storageBucket: "jahez-coupon.appspot.com",
+          messagingSenderId: "40997728682",
+          appId: "1:40997728682:web:8a62070633298c06d0fbd3"
+      };
+
+      // Initialize Firebase
+      const app = firebase.initializeApp(firebaseConfig);
+      const db = firebase.firestore();
+    </script>
 </body>
 </html>
