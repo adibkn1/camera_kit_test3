@@ -12,24 +12,31 @@ function initCameraKit() {
   (async function() {
     const customService = {
       apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
-      getRequestHandler: async function(request) { // Make sure this is marked as async
+      getRequestHandler: async function(request) {
+        // Ensure the button is available in the DOM
         var button = document.getElementById('copyButton');
+        if (!button) {
+          console.error('Button #copyButton not found in the DOM.');
+          return;
+        }
         button.style.display = 'block';
 
-        button.onclick = async function() { // This function also needs to be async
-          // Fetch a random unredeemed coupon code
-          const couponCode = await fetchAndRedeemCoupon();
-          if (couponCode) {
-            navigator.clipboard.writeText(couponCode).then(function() {
+        button.addEventListener('click', async () => {
+          try {
+            const couponCode = await fetchAndRedeemCoupon();
+            if (couponCode) {
+              // Execute clipboard copy and redirection within the try block
+              await navigator.clipboard.writeText(couponCode);
               console.log('Copying to clipboard was successful!');
               window.location.href = "https://jahez.link/EFoKQj3nlHb";
-            }, function(err) {
-              console.error('Could not copy text:', err);
-            });
-          } else {
-            console.log('No unredeemed coupons available.');
+            } else {
+              console.log('No unredeemed coupons available.');
+            }
+          } catch (err) {
+            // Catch and log any errors from fetching the coupon or clipboard operations
+            console.error('Failed to fetch and redeem coupon or clipboard operation failed:', err);
           }
-        };
+        });
       }
     };
 
