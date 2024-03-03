@@ -6,7 +6,7 @@
 
 !function(e,t){if(true)module.exports=t();else { var n, r; }}(this,(function(){return e={418:function(e,t){!function(e,t){for(var r in t)e[r]=t[r]}(t,function(e){var t={};function r(n){if(t[n])return t[n].exports;var o=t[n]={i:n,l:!1,exports:{}};return e[n].call(o.exports,o,o.exports,r),o.l=!0,o.exports}return r.m=e,r.c=t,r.i=function(e){return e},r.d=function(e,t,n){r.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:n})},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=1)}([function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(3),o=function(){function e(e,t){void 0===e&&(e={}),void 0===t&&(t={splitValues:!1});var r,o=this;this.headersMap={},e&&("undefined"!=typeof Headers&&e instanceof Headers?n.getHeaderKeys(e).forEach((function(r){n.getHeaderValues(e,r).forEach((function(e){t.splitValues?o.append(r,n.splitHeaderValue(e)):o.append(r,e)}))})):"object"==typeof(r=e)&&"object"==typeof r.headersMap&&"function"==typeof r.forEach?e.forEach((function(e,t){o.append(e,t)})):"undefined"!=typeof Map&&e instanceof Map?e.forEach((function(e,t){o.append(t,e)})):"string"==typeof e?this.appendFromString(e):"object"==typeof e&&Object.getOwnPropertyNames(e).forEach((function(t){var r=e[t];Array.isArray(r)?r.forEach((function(e){o.append(t,e)})):o.append(t,r)})))}return e.prototype.appendFromString=function(e){for(var t=e.split("\r\n"),r=0;r<t.length;r++){var n=t[r],o=n.indexOf(":");if(o>0){var s=n.substring(0,o).trim(),i=n.substring(o+1).trim();this.append(s,i)}}},e.prototype.delete=function(e,t){var r=n.normalizeName(e);if(void 0===t)delete this.headersMap[r];else{var o=this.headersMap[r];if(o){var s=o.indexOf(t);s>=0&&o.splice(s,1),0===o.length&&delete this.headersMap[r]}}},e.prototype.append=function(e,t){var r=this,o=n.normalizeName(e);Array.isArray(this.headersMap[o])||(this.headersMap[o]=[]),Array.isArray(t)?t.forEach((function(e){r.headersMap[o].push(n.normalizeValue(e))})):this.headersMap[o].push(n.normalizeValue(t))},e.prototype.set=function(e,t){var r=n.normalizeName(e);if(Array.isArray(t)){var o=[];t.forEach((function(e){o.push(n.normalizeValue(e))})),this.headersMap[r]=o}else this.headersMap[r]=[n.normalizeValue(t)]},e.prototype.has=function(e,t){var r=this.headersMap[n.normalizeName(e)];if(!Array.isArray(r))return!1;if(void 0!==t){var o=n.normalizeValue(t);return r.indexOf(o)>=0}return!0},e.prototype.get=function(e){var t=this.headersMap[n.normalizeName(e)];return void 0!==t?t.concat():[]},e.prototype.forEach=function(e){var t=this;Object.getOwnPropertyNames(this.headersMap).forEach((function(r){e(r,t.headersMap[r])}),this)},e.prototype.toHeaders=function(){if("undefined"!=typeof Headers){var e=new Headers;return this.forEach((function(t,r){r.forEach((function(r){e.append(t,r)}))})),e}throw new Error("Headers class is not defined")},e}();t.BrowserHeaders=o},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(0);t.BrowserHeaders=n.BrowserHeaders},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.iterateHeaders=function(e,t){for(var r=e[Symbol.iterator](),n=r.next();!n.done;)t(n.value[0]),n=r.next()},t.iterateHeadersKeys=function(e,t){for(var r=e.keys(),n=r.next();!n.done;)t(n.value),n=r.next()}},function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var n=r(2);t.normalizeName=function(e){if("string"!=typeof e&&(e=String(e)),/[^a-z0-9\-#$%&'*+.\^_`|~]/i.test(e))throw new TypeError("Invalid character in header field name");return e.toLowerCase()},t.normalizeValue=function(e){return"string"!=typeof e&&(e=String(e)),e},t.getHeaderValues=function(e,t){var r=e;if(r instanceof Headers&&r.getAll)return r.getAll(t);var n=r.get(t);return n&&"string"==typeof n?[n]:n},t.getHeaderKeys=function(e){var t=e,r={},o=[];return t.keys?n.iterateHeadersKeys(t,(function(e){r[e]||(r[e]=!0,o.push(e))})):t.forEach?t.forEach((function(e,t){r[t]||(r[t]=!0,o.push(t))})):n.iterateHeaders(t,(function(e){var t=e[0];r[t]||(r[t]=!0,o.push(t))})),o},t.splitHeaderValue=function(e){var t=[];return e.split(", ").forEach((function(e){e.split(",").forEach((function(e){t.push(e)}))})),t}}]))},617:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.ChunkParser=t.ChunkType=t.encodeASCII=t.decodeASCII=void 0;var n,o=r(65);function s(e){return 9===(t=e)||10===t||13===t||e>=32&&e<=126;var t}function i(e){for(var t=0;t!==e.length;++t)if(!s(e[t]))throw new Error("Metadata is not valid (printable) ASCII");return String.fromCharCode.apply(String,Array.prototype.slice.call(e))}function a(e){return 128==(128&e.getUint8(0))}function u(e){return e.getUint32(1,!1)}function d(e,t,r){return e.byteLength-t>=r}function c(e,t,r){if(e.slice)return e.slice(t,r);var n=e.length;void 0!==r&&(n=r);for(var o=new Uint8Array(n-t),s=0,i=t;i<n;i++)o[s++]=e[i];return o}t.decodeASCII=i,t.encodeASCII=function(e){for(var t=new Uint8Array(e.length),r=0;r!==e.length;++r){var n=e.charCodeAt(r);if(!s(n))throw new Error("Metadata contains invalid ASCII");t[r]=n}return t},function(e){e[e.MESSAGE=1]="MESSAGE",e[e.TRAILERS=2]="TRAILERS"}(n=t.ChunkType||(t.ChunkType={}));var p=function(){function e(){this.buffer=null,this.position=0}return e.prototype.parse=function(e,t){if(0===e.length&&t)return[];var r,s=[];if(null==this.buffer)this.buffer=e,this.position=0;else if(this.position===this.buffer.byteLength)this.buffer=e,this.position=0;else{var p=this.buffer.byteLength-this.position,h=new Uint8Array(p+e.byteLength),f=c(this.buffer,this.position);h.set(f,0);var l=new Uint8Array(e);h.set(l,p),this.buffer=h,this.position=0}for(;;){if(!d(this.buffer,this.position,5))return s;var g=c(this.buffer,this.position,this.position+5),b=new DataView(g.buffer,g.byteOffset,g.byteLength),y=u(b);if(!d(this.buffer,this.position,5+y))return s;var v=c(this.buffer,this.position+5,this.position+5+y);if(this.position+=5+y,a(b))return s.push({chunkType:n.TRAILERS,trailers:(r=v,new o.Metadata(i(r)))}),s;s.push({chunkType:n.MESSAGE,data:v})}},e}();t.ChunkParser=p},8:function(e,t){"use strict";var r;Object.defineProperty(t,"__esModule",{value:!0}),t.httpStatusToCode=t.Code=void 0,function(e){e[e.OK=0]="OK",e[e.Canceled=1]="Canceled",e[e.Unknown=2]="Unknown",e[e.InvalidArgument=3]="InvalidArgument",e[e.DeadlineExceeded=4]="DeadlineExceeded",e[e.NotFound=5]="NotFound",e[e.AlreadyExists=6]="AlreadyExists",e[e.PermissionDenied=7]="PermissionDenied",e[e.ResourceExhausted=8]="ResourceExhausted",e[e.FailedPrecondition=9]="FailedPrecondition",e[e.Aborted=10]="Aborted",e[e.OutOfRange=11]="OutOfRange",e[e.Unimplemented=12]="Unimplemented",e[e.Internal=13]="Internal",e[e.Unavailable=14]="Unavailable",e[e.DataLoss=15]="DataLoss",e[e.Unauthenticated=16]="Unauthenticated"}(r=t.Code||(t.Code={})),t.httpStatusToCode=function(e){switch(e){case 0:return r.Internal;case 200:return r.OK;case 400:return r.InvalidArgument;case 401:return r.Unauthenticated;case 403:return r.PermissionDenied;case 404:return r.NotFound;case 409:return r.Aborted;case 412:return r.FailedPrecondition;case 429:return r.ResourceExhausted;case 499:return r.Canceled;case 500:return r.Unknown;case 501:return r.Unimplemented;case 503:return r.Unavailable;case 504:return r.DeadlineExceeded;default:return r.Unknown}}},934:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.client=void 0;var n=r(65),o=r(617),s=r(8),i=r(346),a=r(57),u=r(882);t.client=function(e,t){return new d(e,t)};var d=function(){function e(e,t){this.started=!1,this.sentFirstMessage=!1,this.completed=!1,this.closed=!1,this.finishedSending=!1,this.onHeadersCallbacks=[],this.onMessageCallbacks=[],this.onEndCallbacks=[],this.parser=new o.ChunkParser,this.methodDefinition=e,this.props=t,this.createTransport()}return e.prototype.createTransport=function(){var e=this.props.host+"/"+this.methodDefinition.service.serviceName+"/"+this.methodDefinition.methodName,t={methodDefinition:this.methodDefinition,debug:this.props.debug||!1,url:e,onHeaders:this.onTransportHeaders.bind(this),onChunk:this.onTransportChunk.bind(this),onEnd:this.onTransportEnd.bind(this)};this.props.transport?this.transport=this.props.transport(t):this.transport=a.makeDefaultTransport(t)},e.prototype.onTransportHeaders=function(e,t){if(this.props.debug&&i.debug("onHeaders",e,t),this.closed)this.props.debug&&i.debug("grpc.onHeaders received after request was closed - ignoring");else if(0===t);else{this.responseHeaders=e,this.props.debug&&i.debug("onHeaders.responseHeaders",JSON.stringify(this.responseHeaders,null,2));var r=c(e);this.props.debug&&i.debug("onHeaders.gRPCStatus",r);var n=r&&r>=0?r:s.httpStatusToCode(t);this.props.debug&&i.debug("onHeaders.code",n);var o=e.get("grpc-message")||[];if(this.props.debug&&i.debug("onHeaders.gRPCMessage",o),this.rawOnHeaders(e),n!==s.Code.OK){var a=this.decodeGRPCStatus(o[0]);this.rawOnError(n,a,e)}}},e.prototype.onTransportChunk=function(e){var t=this;if(this.closed)this.props.debug&&i.debug("grpc.onChunk received after request was closed - ignoring");else{var r=[];try{r=this.parser.parse(e)}catch(e){return this.props.debug&&i.debug("onChunk.parsing error",e,e.message),void this.rawOnError(s.Code.Internal,"parsing error: "+e.message)}r.forEach((function(e){if(e.chunkType===o.ChunkType.MESSAGE){var r=t.methodDefinition.responseType.deserializeBinary(e.data);t.rawOnMessage(r)}else e.chunkType===o.ChunkType.TRAILERS&&(t.responseHeaders?(t.responseTrailers=new n.Metadata(e.trailers),t.props.debug&&i.debug("onChunk.trailers",t.responseTrailers)):(t.responseHeaders=new n.Metadata(e.trailers),t.rawOnHeaders(t.responseHeaders)))}))}},e.prototype.onTransportEnd=function(){if(this.props.debug&&i.debug("grpc.onEnd"),this.closed)this.props.debug&&i.debug("grpc.onEnd received after request was closed - ignoring");else if(void 0!==this.responseTrailers){var e=c(this.responseTrailers);if(null!==e){var t=this.responseTrailers.get("grpc-message"),r=this.decodeGRPCStatus(t[0]);this.rawOnEnd(e,r,this.responseTrailers)}else this.rawOnError(s.Code.Internal,"Response closed without grpc-status (Trailers provided)")}else{if(void 0===this.responseHeaders)return void this.rawOnError(s.Code.Unknown,"Response closed without headers");var n=c(this.responseHeaders),o=this.responseHeaders.get("grpc-message");if(this.props.debug&&i.debug("grpc.headers only response ",n,o),null===n)return void this.rawOnEnd(s.Code.Unknown,"Response closed without grpc-status (Headers only)",this.responseHeaders);var a=this.decodeGRPCStatus(o[0]);this.rawOnEnd(n,a,this.responseHeaders)}},e.prototype.decodeGRPCStatus=function(e){if(!e)return"";try{return decodeURIComponent(e)}catch(t){return e}},e.prototype.rawOnEnd=function(e,t,r){var n=this;this.props.debug&&i.debug("rawOnEnd",e,t,r),this.completed||(this.completed=!0,this.onEndCallbacks.forEach((function(o){if(!n.closed)try{o(e,t,r)}catch(e){setTimeout((function(){throw e}),0)}})))},e.prototype.rawOnHeaders=function(e){this.props.debug&&i.debug("rawOnHeaders",e),this.completed||this.onHeadersCallbacks.forEach((function(t){try{t(e)}catch(e){setTimeout((function(){throw e}),0)}}))},e.prototype.rawOnError=function(e,t,r){var o=this;void 0===r&&(r=new n.Metadata),this.props.debug&&i.debug("rawOnError",e,t),this.completed||(this.completed=!0,this.onEndCallbacks.forEach((function(n){if(!o.closed)try{n(e,t,r)}catch(e){setTimeout((function(){throw e}),0)}})))},e.prototype.rawOnMessage=function(e){var t=this;this.props.debug&&i.debug("rawOnMessage",e.toObject()),this.completed||this.closed||this.onMessageCallbacks.forEach((function(r){if(!t.closed)try{r(e)}catch(e){setTimeout((function(){throw e}),0)}}))},e.prototype.onHeaders=function(e){this.onHeadersCallbacks.push(e)},e.prototype.onMessage=function(e){this.onMessageCallbacks.push(e)},e.prototype.onEnd=function(e){this.onEndCallbacks.push(e)},e.prototype.start=function(e){if(this.started)throw new Error("Client already started - cannot .start()");this.started=!0;var t=new n.Metadata(e||{});t.set("content-type","application/grpc-web+proto"),t.set("x-grpc-web","1"),this.transport.start(t)},e.prototype.send=function(e){if(!this.started)throw new Error("Client not started - .start() must be called before .send()");if(this.closed)throw new Error("Client already closed - cannot .send()");if(this.finishedSending)throw new Error("Client already finished sending - cannot .send()");if(!this.methodDefinition.requestStream&&this.sentFirstMessage)throw new Error("Message already sent for non-client-streaming method - cannot .send()");this.sentFirstMessage=!0;var t=u.frameRequest(e);this.transport.sendMessage(t)},e.prototype.finishSend=function(){if(!this.started)throw new Error("Client not started - .finishSend() must be called before .close()");if(this.closed)throw new Error("Client already closed - cannot .send()");if(this.finishedSending)throw new Error("Client already finished sending - cannot .finishSend()");this.finishedSending=!0,this.transport.finishSend()},e.prototype.close=function(){if(!this.started)throw new Error("Client not started - .start() must be called before .close()");if(this.closed)throw new Error("Client already closed - cannot .close()");this.closed=!0,this.props.debug&&i.debug("request.abort aborting request"),this.transport.cancel()},e}();function c(e){var t=e.get("grpc-status")||[];if(t.length>0)try{var r=t[0];return parseInt(r,10)}catch(e){return null}return null}},346:function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.debug=void 0,t.debug=function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t];console.debug?console.debug.apply(null,e):console.log.apply(null,e)}},607:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.grpc=void 0;var n,o=r(418),s=r(57),i=r(229),a=r(540),u=r(210),d=r(859),c=r(8),p=r(938),h=r(35),f=r(934);(n=t.grpc||(t.grpc={})).setDefaultTransport=s.setDefaultTransportFactory,n.CrossBrowserHttpTransport=d.CrossBrowserHttpTransport,n.FetchReadableStreamTransport=i.FetchReadableStreamTransport,n.XhrTransport=u.XhrTransport,n.WebsocketTransport=a.WebsocketTransport,n.Code=c.Code,n.Metadata=o.BrowserHeaders,n.client=function(e,t){return f.client(e,t)},n.invoke=p.invoke,n.unary=h.unary},938:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.invoke=void 0;var n=r(934);t.invoke=function(e,t){if(e.requestStream)throw new Error(".invoke cannot be used with client-streaming methods. Use .client instead.");var r=n.client(e,{host:t.host,transport:t.transport,debug:t.debug});return t.onHeaders&&r.onHeaders(t.onHeaders),t.onMessage&&r.onMessage(t.onMessage),t.onEnd&&r.onEnd(t.onEnd),r.start(t.metadata),r.send(t.request),r.finishSend(),{close:function(){r.close()}}}},65:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.Metadata=void 0;var n=r(418);Object.defineProperty(t,"Metadata",{enumerable:!0,get:function(){return n.BrowserHeaders}})},57:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.makeDefaultTransport=t.setDefaultTransportFactory=void 0;var n=r(859),o=function(e){return n.CrossBrowserHttpTransport({withCredentials:!1})(e)};t.setDefaultTransportFactory=function(e){o=e},t.makeDefaultTransport=function(e){return o(e)}},229:function(e,t,r){"use strict";var n=this&&this.__assign||function(){return(n=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var o in t=arguments[r])Object.prototype.hasOwnProperty.call(t,o)&&(e[o]=t[o]);return e}).apply(this,arguments)};Object.defineProperty(t,"__esModule",{value:!0}),t.detectFetchSupport=t.FetchReadableStreamTransport=void 0;var o=r(65),s=r(346);t.FetchReadableStreamTransport=function(e){return function(t){return function(e,t){return e.debug&&s.debug("fetchRequest",e),new i(e,t)}(t,e)}};var i=function(){function e(e,t){this.cancelled=!1,this.controller=self.AbortController&&new AbortController,this.options=e,this.init=t}return e.prototype.pump=function(e,t){var r=this;if(this.reader=e,this.cancelled)return this.options.debug&&s.debug("Fetch.pump.cancel at first pump"),void this.reader.cancel().catch((function(e){r.options.debug&&s.debug("Fetch.pump.reader.cancel exception",e)}));this.reader.read().then((function(e){if(e.done)return r.options.onEnd(),t;r.options.onChunk(e.value),r.pump(r.reader,t)})).catch((function(e){r.cancelled?r.options.debug&&s.debug("Fetch.catch - request cancelled"):(r.cancelled=!0,r.options.debug&&s.debug("Fetch.catch",e.message),r.options.onEnd(e))}))},e.prototype.send=function(e){var t=this;fetch(this.options.url,n(n({},this.init),{headers:this.metadata.toHeaders(),method:"POST",body:e,signal:this.controller&&this.controller.signal})).then((function(e){if(t.options.debug&&s.debug("Fetch.response",e),t.options.onHeaders(new o.Metadata(e.headers),e.status),!e.body)return e;t.pump(e.body.getReader(),e)})).catch((function(e){t.cancelled?t.options.debug&&s.debug("Fetch.catch - request cancelled"):(t.cancelled=!0,t.options.debug&&s.debug("Fetch.catch",e.message),t.options.onEnd(e))}))},e.prototype.sendMessage=function(e){this.send(e)},e.prototype.finishSend=function(){},e.prototype.start=function(e){this.metadata=e},e.prototype.cancel=function(){var e=this;this.cancelled?this.options.debug&&s.debug("Fetch.cancel already cancelled"):(this.cancelled=!0,this.controller?(this.options.debug&&s.debug("Fetch.cancel.controller.abort"),this.controller.abort()):this.options.debug&&s.debug("Fetch.cancel.missing abort controller"),this.reader?(this.options.debug&&s.debug("Fetch.cancel.reader.cancel"),this.reader.cancel().catch((function(t){e.options.debug&&s.debug("Fetch.cancel.reader.cancel exception",t)}))):this.options.debug&&s.debug("Fetch.cancel before reader"))},e}();t.detectFetchSupport=function(){return"undefined"!=typeof Response&&Response.prototype.hasOwnProperty("body")&&"function"==typeof Headers}},859:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.CrossBrowserHttpTransport=void 0;var n=r(229),o=r(210);t.CrossBrowserHttpTransport=function(e){if(n.detectFetchSupport()){var t={credentials:e.withCredentials?"include":"same-origin"};return n.FetchReadableStreamTransport(t)}return o.XhrTransport({withCredentials:e.withCredentials})}},210:function(e,t,r){"use strict";var n,o=this&&this.__extends||(n=function(e,t){return(n=Object.setPrototypeOf||{__proto__:[]}instanceof Array&&function(e,t){e.__proto__=t}||function(e,t){for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])})(e,t)},function(e,t){function r(){this.constructor=e}n(e,t),e.prototype=null===t?Object.create(t):(r.prototype=t.prototype,new r)});Object.defineProperty(t,"__esModule",{value:!0}),t.stringToArrayBuffer=t.MozChunkedArrayBufferXHR=t.XHR=t.XhrTransport=void 0;var s=r(65),i=r(346),a=r(849);t.XhrTransport=function(e){return function(t){if(a.detectMozXHRSupport())return new d(t,e);if(a.detectXHROverrideMimeTypeSupport())return new u(t,e);throw new Error("This environment's XHR implementation cannot support binary transfer.")}};var u=function(){function e(e,t){this.options=e,this.init=t}return e.prototype.onProgressEvent=function(){this.options.debug&&i.debug("XHR.onProgressEvent.length: ",this.xhr.response.length);var e=this.xhr.response.substr(this.index);this.index=this.xhr.response.length;var t=p(e);this.options.onChunk(t)},e.prototype.onLoadEvent=function(){this.options.debug&&i.debug("XHR.onLoadEvent"),this.options.onEnd()},e.prototype.onStateChange=function(){this.options.debug&&i.debug("XHR.onStateChange",this.xhr.readyState),this.xhr.readyState===XMLHttpRequest.HEADERS_RECEIVED&&this.options.onHeaders(new s.Metadata(this.xhr.getAllResponseHeaders()),this.xhr.status)},e.prototype.sendMessage=function(e){this.xhr.send(e)},e.prototype.finishSend=function(){},e.prototype.start=function(e){var t=this;this.metadata=e;var r=new XMLHttpRequest;this.xhr=r,r.open("POST",this.options.url),this.configureXhr(),this.metadata.forEach((function(e,t){r.setRequestHeader(e,t.join(", "))})),r.withCredentials=Boolean(this.init.withCredentials),r.addEventListener("readystatechange",this.onStateChange.bind(this)),r.addEventListener("progress",this.onProgressEvent.bind(this)),r.addEventListener("loadend",this.onLoadEvent.bind(this)),r.addEventListener("error",(function(e){t.options.debug&&i.debug("XHR.error",e),t.options.onEnd(e.error)}))},e.prototype.configureXhr=function(){this.xhr.responseType="text",this.xhr.overrideMimeType("text/plain; charset=x-user-defined")},e.prototype.cancel=function(){this.options.debug&&i.debug("XHR.abort"),this.xhr.abort()},e}();t.XHR=u;var d=function(e){function t(){return null!==e&&e.apply(this,arguments)||this}return o(t,e),t.prototype.configureXhr=function(){this.options.debug&&i.debug("MozXHR.configureXhr: setting responseType to 'moz-chunked-arraybuffer'"),this.xhr.responseType="moz-chunked-arraybuffer"},t.prototype.onProgressEvent=function(){var e=this.xhr.response;this.options.debug&&i.debug("MozXHR.onProgressEvent: ",new Uint8Array(e)),this.options.onChunk(new Uint8Array(e))},t}(u);function c(e,t){var r=e.charCodeAt(t);if(r>=55296&&r<=56319){var n=e.charCodeAt(t+1);n>=56320&&n<=57343&&(r=65536+(r-55296<<10)+(n-56320))}return r}function p(e){for(var t=new Uint8Array(e.length),r=0,n=0;n<e.length;n++){var o=String.prototype.codePointAt?e.codePointAt(n):c(e,n);t[r++]=255&o}return t}t.MozChunkedArrayBufferXHR=d,t.stringToArrayBuffer=p},849:function(e,t){"use strict";var r;function n(){if(void 0!==r)return r;if(XMLHttpRequest){r=new XMLHttpRequest;try{r.open("GET","https://localhost")}catch(e){}}return r}function o(e){var t=n();if(!t)return!1;try{return t.responseType=e,t.responseType===e}catch(e){}return!1}Object.defineProperty(t,"__esModule",{value:!0}),t.detectXHROverrideMimeTypeSupport=t.detectMozXHRSupport=t.xhrSupportsResponseType=void 0,t.xhrSupportsResponseType=o,t.detectMozXHRSupport=function(){return"undefined"!=typeof XMLHttpRequest&&o("moz-chunked-arraybuffer")},t.detectXHROverrideMimeTypeSupport=function(){return"undefined"!=typeof XMLHttpRequest&&XMLHttpRequest.prototype.hasOwnProperty("overrideMimeType")}},540:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.WebsocketTransport=void 0;var n,o=r(346),s=r(617);!function(e){e[e.FINISH_SEND=1]="FINISH_SEND"}(n||(n={}));var i=new Uint8Array([1]);t.WebsocketTransport=function(){return function(e){return function(e){e.debug&&o.debug("websocketRequest",e);var t,r=function(e){if("https://"===e.substr(0,8))return"wss://"+e.substr(8);if("http://"===e.substr(0,7))return"ws://"+e.substr(7);throw new Error("Websocket transport constructed with non-https:// or http:// host.")}(e.url),a=[];function u(e){if(e===n.FINISH_SEND)t.send(i);else{var r=e,o=new Int8Array(r.byteLength+1);o.set(new Uint8Array([0])),o.set(r,1),t.send(o)}}return{sendMessage:function(e){t&&t.readyState!==t.CONNECTING?u(e):a.push(e)},finishSend:function(){t&&t.readyState!==t.CONNECTING?u(n.FINISH_SEND):a.push(n.FINISH_SEND)},start:function(n){(t=new WebSocket(r,["grpc-websockets"])).binaryType="arraybuffer",t.onopen=function(){var r;e.debug&&o.debug("websocketRequest.onopen"),t.send((r="",n.forEach((function(e,t){r+=e+": "+t.join(", ")+"\r\n"})),s.encodeASCII(r))),a.forEach((function(e){u(e)}))},t.onclose=function(t){e.debug&&o.debug("websocketRequest.onclose",t),e.onEnd()},t.onerror=function(t){e.debug&&o.debug("websocketRequest.onerror",t)},t.onmessage=function(t){e.onChunk(new Uint8Array(t.data))}},cancel:function(){e.debug&&o.debug("websocket.abort"),t.close()}}}(e)}}},35:function(e,t,r){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.unary=void 0;var n=r(65),o=r(934);t.unary=function(e,t){if(e.responseStream)throw new Error(".unary cannot be used with server-streaming methods. Use .invoke or .client instead.");if(e.requestStream)throw new Error(".unary cannot be used with client-streaming methods. Use .client instead.");var r=null,s=null,i=o.client(e,{host:t.host,transport:t.transport,debug:t.debug});return i.onHeaders((function(e){r=e})),i.onMessage((function(e){s=e})),i.onEnd((function(e,o,i){t.onEnd({status:e,statusMessage:o,headers:r||new n.Metadata,message:s,trailers:i})})),i.start(t.metadata),i.send(t.request),i.finishSend(),{close:function(){i.close()}}}},882:function(e,t){"use strict";Object.defineProperty(t,"__esModule",{value:!0}),t.frameRequest=void 0,t.frameRequest=function(e){var t=e.serializeBinary(),r=new ArrayBuffer(t.byteLength+5);return new DataView(r,1,4).setUint32(0,t.length,!1),new Uint8Array(r,5).set(t),new Uint8Array(r)}}},t={},function r(n){if(t[n])return t[n].exports;var o=t[n]={exports:{}};return e[n].call(o.exports,o,o.exports,r),o.exports}(607);var e,t}));
 
-/***/ }),
+/***/ }), 
 
 /***/ 537:
 /***/ ((module) => {
@@ -12129,6 +12129,23 @@ var __webpack_exports__ = {};
 (() => {
 "use strict";
 
+;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/common/copyDefinedProperties.js
+/**
+ * Copy only those properties of an object which are not undefined.
+ *
+ * This can be useful when using `Object.assign(foo, bar)` or `{ ...foo, ...bar }` to copy values from one object to
+ * another. There's a (rather annoying) difference between a property not existing in an object and that property
+ * existing but having an undefined value. When copying values using either of the methods above, it's generally
+ * expected that undefined properties won't overwrite defined properties. But that's not the behavior – this helper
+ * function is needed to ensure undefined properties in `bar` don't clobber corresponding properties in `foo`.
+ *
+ * @param obj Any object, possibly with properties whose values are undefined.
+ * @returns A copy of the input object, without keys whose values were undefined.
+ */
+function copyDefinedProperties(obj) {
+    return Object.fromEntries(Object.entries(obj).filter(([_, value]) => value !== undefined));
+}
+//# sourceMappingURL=copyDefinedProperties.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/configurationOverrides.js
 /**
  * Prefix of override key on window object.
@@ -12149,10 +12166,10 @@ function defineWindowField(propertyToOverride) {
     Object.defineProperty(window, `${windowFieldPrefix}${propertyToOverride}`, {
         get() {
             var _a;
-            return (_a = configurationOverrides_getConfigurationOverrides()) === null || _a === void 0 ? void 0 : _a[propertyToOverride];
+            return (_a = getConfigurationOverrides()) === null || _a === void 0 ? void 0 : _a[propertyToOverride];
         },
         set(value) {
-            const storedOverrides = Object.assign(Object.assign({}, configurationOverrides_getConfigurationOverrides()), { [propertyToOverride]: value });
+            const storedOverrides = Object.assign(Object.assign({}, getConfigurationOverrides()), { [propertyToOverride]: value });
             if (Object.values(storedOverrides).every((value) => typeof value === "undefined")) {
                 sessionStorage.removeItem(windowFieldPrefix);
             }
@@ -12169,13 +12186,51 @@ function defineWindowField(propertyToOverride) {
  *
  * @internal
  */
-function configurationOverrides_getConfigurationOverrides() {
+function getConfigurationOverrides() {
     if (!sessionStorage)
         return undefined;
     const overridesString = sessionStorage.getItem(windowFieldPrefix);
     return overridesString && JSON.parse(overridesString);
 }
 //# sourceMappingURL=configurationOverrides.js.map
+;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/dependency-injection/Injectable.js
+function Injectable(token, dependenciesOrFn, maybeFn) {
+    const dependencies = Array.isArray(dependenciesOrFn) ? dependenciesOrFn : [];
+    const fn = typeof dependenciesOrFn === "function" ? dependenciesOrFn : maybeFn;
+    if (!fn) {
+        throw new TypeError("[Injectable] Received invalid arguments. The factory function must be either the second " +
+            "or third argument.");
+    }
+    if (fn.length !== dependencies.length) {
+        throw new TypeError("[Injectable] Function arity does not match the number of dependencies. Function has arity " +
+            `${fn.length}, but ${dependencies.length} dependencies were specified.` +
+            `\nDependencies: ${JSON.stringify(dependencies)}`);
+    }
+    const factory = (...args) => fn(...args);
+    factory.token = token;
+    factory.dependencies = dependencies;
+    return factory;
+}
+function ConcatInjectable(token, dependenciesOrFn, maybeFn) {
+    const dependencies = Array.isArray(dependenciesOrFn) ? dependenciesOrFn : [];
+    const fn = typeof dependenciesOrFn === "function" ? dependenciesOrFn : maybeFn;
+    if (!fn) {
+        throw new TypeError("[ConcatInjectable] Received invalid arguments. The factory function must be either the second " +
+            "or third argument.");
+    }
+    if (fn.length !== dependencies.length) {
+        throw new TypeError("[Injectable] Function arity does not match the number of dependencies. Function has arity " +
+            `${fn.length}, but ${dependencies.length} dependencies were specified.` +
+            `\nDependencies: ${JSON.stringify(dependencies)}`);
+    }
+    const factory = (array, ...args) => {
+        return array.concat(fn(...args));
+    };
+    factory.token = token;
+    factory.dependencies = [token, ...dependencies];
+    return factory;
+}
+//# sourceMappingURL=Injectable.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/configuration.js
 
 
@@ -12208,7 +12263,7 @@ function isHandledAppleDevice() {
         (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 2));
 }
 /** @internal */
-const configuration_createCameraKitConfigurationFactory = (configuration) => {
+const createCameraKitConfigurationFactory = (configuration) => {
     // always leave debug mode warning about overrides in console
     const overrides = getConfigurationOverrides();
     if (overrides) {
@@ -13994,44 +14049,6 @@ function loadScript(scriptUri) {
     });
 }
 //# sourceMappingURL=loadScript.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/dependency-injection/Injectable.js
-function Injectable_Injectable(token, dependenciesOrFn, maybeFn) {
-    const dependencies = Array.isArray(dependenciesOrFn) ? dependenciesOrFn : [];
-    const fn = typeof dependenciesOrFn === "function" ? dependenciesOrFn : maybeFn;
-    if (!fn) {
-        throw new TypeError("[Injectable] Received invalid arguments. The factory function must be either the second " +
-            "or third argument.");
-    }
-    if (fn.length !== dependencies.length) {
-        throw new TypeError("[Injectable] Function arity does not match the number of dependencies. Function has arity " +
-            `${fn.length}, but ${dependencies.length} dependencies were specified.` +
-            `\nDependencies: ${JSON.stringify(dependencies)}`);
-    }
-    const factory = (...args) => fn(...args);
-    factory.token = token;
-    factory.dependencies = dependencies;
-    return factory;
-}
-function ConcatInjectable(token, dependenciesOrFn, maybeFn) {
-    const dependencies = Array.isArray(dependenciesOrFn) ? dependenciesOrFn : [];
-    const fn = typeof dependenciesOrFn === "function" ? dependenciesOrFn : maybeFn;
-    if (!fn) {
-        throw new TypeError("[ConcatInjectable] Received invalid arguments. The factory function must be either the second " +
-            "or third argument.");
-    }
-    if (fn.length !== dependencies.length) {
-        throw new TypeError("[Injectable] Function arity does not match the number of dependencies. Function has arity " +
-            `${fn.length}, but ${dependencies.length} dependencies were specified.` +
-            `\nDependencies: ${JSON.stringify(dependencies)}`);
-    }
-    const factory = (array, ...args) => {
-        return array.concat(fn(...args));
-    };
-    factory.token = token;
-    factory.dependencies = [token, ...dependencies];
-    return factory;
-}
-//# sourceMappingURL=Injectable.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/common/typeguards.js
 function typeguards_isString(value) {
     return typeof value === "string";
@@ -14042,7 +14059,7 @@ function typeguards_isString(value) {
  * Safe strings allow to prevent CRLF attacks. We use encoding approach inspired by:
  * https://community.veracode.com/s/question/0D53n00007hJJV5CAO/is-cwe-id-117-intended-for-consolelog
  */
-function typeguards_isSafeString(value) {
+function isSafeString(value) {
     return typeguards_isString(value) && encodeURIComponent(value) === value;
 }
 function isNumber(value) {
@@ -14058,7 +14075,7 @@ function isStringArray(value) {
     return isArrayOfType(typeguards_isString, value);
 }
 function isSafeStringArray(value) {
-    return isArrayOfType(typeguards_isSafeString, value);
+    return isArrayOfType(isSafeString, value);
 }
 /**
  * Guards given value is instance of ArrayBuffer.
@@ -14136,7 +14153,7 @@ function isEmptyOrSafeUrl(urlString) {
  */
 const createDebugHandler = () => {
     var _a;
-    const noCustomWasmEndpoint = !((_a = configurationOverrides_getConfigurationOverrides()) === null || _a === void 0 ? void 0 : _a.wasmEndpointOverride);
+    const noCustomWasmEndpoint = !((_a = getConfigurationOverrides()) === null || _a === void 0 ? void 0 : _a.wasmEndpointOverride);
     if (noCustomWasmEndpoint) {
         return (next) => next;
     }
@@ -14586,23 +14603,6 @@ function getLogger(module) {
     }, {});
 }
 //# sourceMappingURL=logger.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/common/copyDefinedProperties.js
-/**
- * Copy only those properties of an object which are not undefined.
- *
- * This can be useful when using `Object.assign(foo, bar)` or `{ ...foo, ...bar }` to copy values from one object to
- * another. There's a (rather annoying) difference between a property not existing in an object and that property
- * existing but having an undefined value. When copying values using either of the methods above, it's generally
- * expected that undefined properties won't overwrite defined properties. But that's not the behavior – this helper
- * function is needed to ensure undefined properties in `bar` don't clobber corresponding properties in `foo`.
- *
- * @param obj Any object, possibly with properties whose values are undefined.
- * @returns A copy of the input object, without keys whose values were undefined.
- */
-function copyDefinedProperties_copyDefinedProperties(obj) {
-    return Object.fromEntries(Object.entries(obj).filter(([_, value]) => value !== undefined));
-}
-//# sourceMappingURL=copyDefinedProperties.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/handlers/retryingHandler.js
 
 
@@ -14642,7 +14642,7 @@ function ensureClonedRequest(input) {
  * @returns {@link ChainableHandler}, suitable for use in {@link HandlerChainBuilder.map}
  */
 const createRetryingHandler = (options = {}) => {
-    const definedOptions = copyDefinedProperties_copyDefinedProperties(options);
+    const definedOptions = copyDefinedProperties(options);
     const { backoffMultiple, baseSleep, maxSleep, maxRetries, retryPredicate } = Object.assign(Object.assign({}, defaultOptions), definedOptions);
     let retryCount = -1;
     const jitterSleep = (priorSleep) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
@@ -14810,7 +14810,7 @@ const timeoutHandler_defaultOptions = {
  * @returns {@link ChainableHandler}, suitable for use in {@link HandlerChainBuilder.map}
  */
 const createTimeoutHandler = (options = {}) => {
-    const definedOptions = copyDefinedProperties_copyDefinedProperties(options);
+    const definedOptions = copyDefinedProperties(options);
     const { createError, timeout } = Object.assign(Object.assign({}, timeoutHandler_defaultOptions), definedOptions);
     // If the timeout Promise wins the race, the HandlerChainBuilder sets the abort signal for subsequent handlers. They
     // may look at the abort signal in order to terminate themselves early.
@@ -14833,7 +14833,7 @@ const createTimeoutHandler = (options = {}) => {
  *
  * @internal
  */
-const defaultFetchHandler_defaultFetchHandlerFactory = Injectable_Injectable("defaultFetchHandler", () => {
+const defaultFetchHandlerFactory = Injectable("defaultFetchHandler", () => {
     return (new HandlerChainBuilder(fetch)
         .map(createDebugHandler())
         // The 20-second per-request timeout is pretty arbitrary, it's just set to be longer than our API gateway
@@ -14860,10 +14860,10 @@ const defaultFetchHandler_defaultFetchHandlerFactory = Injectable_Injectable("de
 const bigInt=()=>(async e=>{try{return(await WebAssembly.instantiate(e)).instance.exports.b(BigInt(0))===BigInt(0)}catch(e){return!1}})(new Uint8Array([0,97,115,109,1,0,0,0,1,6,1,96,1,126,1,126,3,2,1,0,7,5,1,1,98,0,0,10,6,1,4,0,32,0,11])),bulkMemory=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,5,3,1,0,1,10,14,1,12,0,65,0,65,0,65,0,252,10,0,0,11])),exceptions=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,8,1,6,0,6,64,25,11,11])),multiValue=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,6,1,96,0,2,127,127,3,2,1,0,10,8,1,6,0,65,0,65,0,11])),mutableGlobals=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,2,8,1,1,97,1,98,3,127,1,6,6,1,127,1,65,0,11,7,5,1,1,97,3,1])),referenceTypes=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,7,1,5,0,208,112,26,11])),saturatedFloatToInt=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,12,1,10,0,67,0,0,0,0,252,0,26,11])),signExtensions=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,8,1,6,0,65,0,192,26,11])),simd=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,5,1,96,0,1,123,3,2,1,0,10,10,1,8,0,65,0,253,15,253,98,11])),tailCall=async()=>WebAssembly.validate(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,10,6,1,4,0,18,0,11])),threads=()=>(async e=>{try{return"undefined"!=typeof MessageChannel&&(new MessageChannel).port1.postMessage(new SharedArrayBuffer(1)),WebAssembly.validate(e)}catch(e){return!1}})(new Uint8Array([0,97,115,109,1,0,0,0,1,4,1,96,0,0,3,2,1,0,5,4,1,3,1,1,10,11,1,9,0,65,0,254,16,2,0,26,11]));
 
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/common/memoize.js
-function memoize_isMemoized(fn) {
+function isMemoized(fn) {
     return typeof fn === "function" && typeof fn.delegate === "function";
 }
-function memoize_memoize(delegate) {
+function memoize(delegate) {
     let memo;
     const memoized = (...args) => {
         if (typeof memo !== "undefined")
@@ -14916,7 +14916,7 @@ const lensImagePickerError = namedError("LensImagePickerError");
 /** @internal */
 const cacheKeyNotFoundError = namedError("CacheKeyNotFoundError");
 /** @internal */
-const namedErrors_configurationError = namedError("ConfigurationError");
+const configurationError = namedError("ConfigurationError");
 /** @internal */
 const namedErrors_webGLError = namedError("WebGLError");
 /** @internal */
@@ -14932,7 +14932,7 @@ const persistentStoreError = namedError("PersistentStoreError");
 /** @internal */
 const lensAssetError = namedError("LensAssetError");
 /** @internal */
-const namedErrors_bootstrapError = namedError("BootstrapError");
+const bootstrapError = namedError("BootstrapError");
 //# sourceMappingURL=namedErrors.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/environment.json
 const environment_namespaceObject = JSON.parse('{"l":"0.15.1-alpha.1"}');
@@ -15125,7 +15125,7 @@ function normalizeUserAgentData(userAgentData) {
     };
 }
 /** @internal */
-const getPlatformInfo = memoize_memoize(function getPlatformIno() {
+const getPlatformInfo = memoize(function getPlatformIno() {
     var _a, _b, _c;
     // [NavigatorUAData](https://developer.mozilla.org/en-US/docs/Web/API/NavigatorUAData) is currently only
     // available on Chromium-based browsers – it's nice because it gives us clear, well-documented information. But
@@ -15278,7 +15278,7 @@ function getWebXrCapabilities() {
  *
  * @internal
  */
-const platformCapabilities_getPlatformCapabilities = memoize_memoize(function getPlatformCapabilities() {
+const getPlatformCapabilities = memoize(function getPlatformCapabilities() {
     return tslib_es6_awaiter(this, void 0, void 0, function* () {
         return {
             webgl: getWebGlSupport(),
@@ -15431,7 +15431,7 @@ function getRequiredBootstrapURLs(endpointOverride) {
     return tslib_es6_awaiter(this, void 0, void 0, function* () {
         // If we have an endpoint override, remove trailing `/` so we can construct a valid URL.
         const endpoint = endpointOverride === null || endpointOverride === void 0 ? void 0 : endpointOverride.replace(/[\/]+$/, "");
-        const { wasm } = yield platformCapabilities_getPlatformCapabilities();
+        const { wasm } = yield getPlatformCapabilities();
         if (!wasm.supported)
             throw wasm.error;
         const { lensCore } = getPlatformInfo();
@@ -15459,7 +15459,7 @@ function getRequiredBootstrapURLs(endpointOverride) {
  *
  * @internal
  */
-const lensCoreFactory_lensCoreFactory = Injectable_Injectable("lensCore", [defaultFetchHandler_defaultFetchHandlerFactory.token, configurationToken], (handler, { lensCoreOverrideUrls, wasmEndpointOverride }) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
+const lensCoreFactory = Injectable("lensCore", [defaultFetchHandlerFactory.token, configurationToken], (handler, { lensCoreOverrideUrls, wasmEndpointOverride }) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     let lensCoreJS;
     let lensCoreWASM;
@@ -16041,7 +16041,7 @@ const createRequestStateEmittingHandler = (requestStateEventTarget) => (next) =>
 /**
  * @internal
  */
-const requestStateEmittingHandler_requestStateEventTargetFactory = Injectable_Injectable("requestStateEventTarget", () => new TypedEventTarget());
+const requestStateEventTargetFactory = Injectable("requestStateEventTarget", () => new TypedEventTarget());
 //# sourceMappingURL=requestStateEmittingHandler.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/handlers/arrayBufferParsingHandler.js
 
@@ -17006,7 +17006,7 @@ function assertUnreachable(_) {
  * @param condition Condition to test.
  * @param error Optional error message or error instance to throw.
  */
-function assertions_assert(condition, error = "Assertion failed") {
+function assert(condition, error = "Assertion failed") {
     if (!condition) {
         if (error instanceof Error) {
             throw error;
@@ -17079,8 +17079,8 @@ function isAnyArray(value) {
  */
 function toPublicLens({ id, groupId, name, content, vendorData, cameraFacingPreference, lensCreator, scannable, featureMetadata, }) {
     var _a;
-    assertions_assert(isEmptyOrSafeUrl(content === null || content === void 0 ? void 0 : content.iconUrlBolt), "Unsafe icon URL");
-    assertions_assert(isEmptyOrSafeUrl((_a = content === null || content === void 0 ? void 0 : content.preview) === null || _a === void 0 ? void 0 : _a.imageUrl), "Unsafe preview URL");
+    assert(isEmptyOrSafeUrl(content === null || content === void 0 ? void 0 : content.iconUrlBolt), "Unsafe icon URL");
+    assert(isEmptyOrSafeUrl((_a = content === null || content === void 0 ? void 0 : content.preview) === null || _a === void 0 ? void 0 : _a.imageUrl), "Unsafe preview URL");
     return {
         id,
         groupId,
@@ -17115,7 +17115,7 @@ function toPublicLens({ id, groupId, name, content, vendorData, cameraFacingPref
  *
  * @internal
  */
-const metricsEventTarget_metricsEventTargetFactory = Injectable_Injectable("metricsEventTarget", () => new TypedEventTarget());
+const metricsEventTargetFactory = Injectable("metricsEventTarget", () => new TypedEventTarget());
 //# sourceMappingURL=metricsEventTarget.js.map
 ;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/EmptyError.js
 
@@ -17374,11 +17374,11 @@ if ((minimal_default()).util.Long !== (long_default())) {
 
 
 /** @internal */
-const getCameraKitUserAgent = memoize_memoize(function getCameraKitUserAgent() {
+const getCameraKitUserAgent = memoize(function getCameraKitUserAgent() {
     var _a;
     const { browser, deviceModel, origin, osName, osVersion, sdkShortVersion, lensCore } = getPlatformInfo();
     // Set this to `DEBUG` manually while testing / root-causing.
-    const { userAgentFlavor } = (_a = configurationOverrides_getConfigurationOverrides()) !== null && _a !== void 0 ? _a : { userAgentFlavor: "release" };
+    const { userAgentFlavor } = (_a = getConfigurationOverrides()) !== null && _a !== void 0 ? _a : { userAgentFlavor: "release" };
     const flavor = userAgentFlavor === "release" ? "" : "DEBUG ";
     // This full string is defined here:
     // eslint-disable-next-line max-len
@@ -17420,7 +17420,7 @@ const createHeadersModifyingFetchHandler = (modifyHeaders) => (next) => (input, 
  *
  * @internal
  */
-const cameraKitServiceFetchHandlerFactory_cameraKitServiceFetchHandlerFactory = Injectable_Injectable("cameraKitServiceFetchHandler", [configurationToken, defaultFetchHandler_defaultFetchHandlerFactory.token], ({ apiToken }, defaultFetchHandler) => {
+const cameraKitServiceFetchHandlerFactory = Injectable("cameraKitServiceFetchHandler", [configurationToken, defaultFetchHandlerFactory.token], ({ apiToken }, defaultFetchHandler) => {
     return new HandlerChainBuilder(defaultFetchHandler).map(createHeadersModifyingFetchHandler((headers) => {
         headers.append("x-snap-client-user-agent", getCameraKitUserAgent());
         headers.append("authorization", `Bearer ${apiToken}`);
@@ -23738,7 +23738,7 @@ class PageVisibility {
         this.visibilityTransition = false;
     }
 }
-const pageVisibility_pageVisibilityFactory = Injectable_Injectable("pageVisibility", () => new PageVisibility());
+const pageVisibilityFactory = Injectable("pageVisibility", () => new PageVisibility());
 //# sourceMappingURL=pageVisibility.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/handlers/rateLimitingHandler.js
 
@@ -23796,7 +23796,7 @@ const METRIC_REQUEST_RATE_LIMIT_MS = 1000; // send at most one metric request pe
 /**
  * @internal
  */
-const metricsHandler_metricsHandlerFactory = Injectable_Injectable("metricsHandler", [cameraKitServiceFetchHandlerFactory_cameraKitServiceFetchHandlerFactory.token, pageVisibility_pageVisibilityFactory.token], (fetchHandler, pageVisibility) => {
+const metricsHandlerFactory = Injectable("metricsHandler", [cameraKitServiceFetchHandlerFactory.token, pageVisibilityFactory.token], (fetchHandler, pageVisibility) => {
     return new HandlerChainBuilder(fetchHandler).map(createRateLimitingHandler(METRIC_REQUEST_RATE_LIMIT_MS, pageVisibility)).handler;
 });
 //# sourceMappingURL=metricsHandler.js.map
@@ -23895,7 +23895,7 @@ class OperationalMetricsReporter {
 /**
  * @internal
  */
-const operationalMetricsReporter_operationalMetricReporterFactory = Injectable_Injectable("operationalMetricsReporter", [metricsHandler_metricsHandlerFactory.token, pageVisibility_pageVisibilityFactory.token, configurationToken], (metricsHandler, pageVisibility, configuration) => {
+const operationalMetricReporterFactory = Injectable("operationalMetricsReporter", [metricsHandlerFactory.token, pageVisibilityFactory.token, configurationToken], (metricsHandler, pageVisibility, configuration) => {
     const handler = new HandlerChainBuilder(metricsHandler)
         .map(createMappingHandler((metrics) => {
         const request = { metrics };
@@ -24047,7 +24047,7 @@ const cofHandler_logger = getLogger("cofHandler");
  * immediately and the cache is updated in the background. If no response is found, a COF request is made. This request
  * will retry (with exponential backoff + jitter) for 5 seconds before returning an error to the caller.
  */
-const cofHandler_cofHandlerFactory = Injectable_Injectable("cofHandler", [configurationToken, requestStateEmittingHandler_requestStateEventTargetFactory.token, operationalMetricsReporter_operationalMetricReporterFactory.token], (config, requestStateEventTarget, reporter) => {
+const cofHandlerFactory = Injectable("cofHandler", [configurationToken, requestStateEventTargetFactory.token, operationalMetricReporterFactory.token], (config, requestStateEventTarget, reporter) => {
     const cofCache = new ExpiringPersistence(() => convertDaysToSeconds(365), new IndexedDBPersistence({ databaseName: "COFCache" }));
     const getCacheKey = (r) => JSON.stringify(r);
     // We need to wrap `targetingQuery` to create a usable Handler – the main issue is that HandlerChainBuilder
@@ -24194,7 +24194,7 @@ class RemoteConfiguration {
         }));
     }
 }
-const remoteConfiguration_remoteConfigurationFactory = Injectable_Injectable("remoteConfiguration", [configurationToken, cofHandler_cofHandlerFactory.token, cameraKitServiceFetchHandlerFactory_cameraKitServiceFetchHandlerFactory.token], (config, cofHandler, fetchHandler) => {
+const remoteConfigurationFactory = Injectable("remoteConfiguration", [configurationToken, cofHandlerFactory.token, cameraKitServiceFetchHandlerFactory.token], (config, cofHandler, fetchHandler) => {
     const remoteConfig = new RemoteConfiguration(config.lensPerformance, config.apiHostname, cofHandler, fetchHandler);
     // We'll kick off remote configuration loading by subscribing (and then unsubscribing) to a dummy config value.
     // Subsequent requests for config will use the shared Observable, benefitting from this eager loading.
@@ -24220,7 +24220,7 @@ const isAssetConfig = (value) => {
 /**
  * @internal
  */
-const deviceDependentAssetLoader_deviceDependentAssetLoaderFactory = Injectable_Injectable("deviceDependentAssetLoader", [defaultFetchHandler_defaultFetchHandlerFactory.token, remoteConfiguration_remoteConfigurationFactory.token], (fetchHandler, remoteConfiguration) => {
+const deviceDependentAssetLoaderFactory = Injectable("deviceDependentAssetLoader", [defaultFetchHandlerFactory.token, remoteConfigurationFactory.token], (fetchHandler, remoteConfiguration) => {
     const assetHandler = new HandlerChainBuilder(fetchHandler).map(createArrayBufferParsingHandler()).handler;
     return function deviceDependentAssetLoader({ assetId }) {
         return tslib_es6_awaiter(this, void 0, void 0, function* () {
@@ -24270,7 +24270,7 @@ const deviceDependentAssetLoader_deviceDependentAssetLoaderFactory = Injectable_
 /**
  * @internal
  */
-const remoteMediaAssetLoaderFactory_remoteMediaAssetLoaderFactory = Injectable_Injectable("remoteMediaAssetLoader", [defaultFetchHandler_defaultFetchHandlerFactory.token], (fetchHandler) => {
+const remoteMediaAssetLoaderFactory = Injectable("remoteMediaAssetLoader", [defaultFetchHandlerFactory.token], (fetchHandler) => {
     const handler = new HandlerChainBuilder(fetchHandler).map(createArrayBufferParsingHandler()).handler;
     return function remoteMediaAssetLoader(asset) {
         return tslib_es6_awaiter(this, void 0, void 0, function* () {
@@ -24297,7 +24297,7 @@ const remoteMediaAssetLoaderFactory_remoteMediaAssetLoaderFactory = Injectable_I
 /**
  * @internal
  */
-const staticAssetLoader_staticAssetLoaderFactory = Injectable_Injectable("staticAssetLoader", [defaultFetchHandler_defaultFetchHandlerFactory.token], (fetchHandler) => {
+const staticAssetLoaderFactory = Injectable("staticAssetLoader", [defaultFetchHandlerFactory.token], (fetchHandler) => {
     const handler = new HandlerChainBuilder(fetchHandler).map(createArrayBufferParsingHandler()).handler;
     return (asset, _lens, assetManifest) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
         var _a;
@@ -24482,13 +24482,13 @@ class LensAssetRepository {
 /**
  * @internal
  */
-const LensAssetRepository_lensAssetRepositoryFactory = Injectable_Injectable("lensAssetRepository", [
-    lensCoreFactory_lensCoreFactory.token,
-    deviceDependentAssetLoader_deviceDependentAssetLoaderFactory.token,
-    remoteMediaAssetLoaderFactory_remoteMediaAssetLoaderFactory.token,
-    staticAssetLoader_staticAssetLoaderFactory.token,
-    metricsEventTarget_metricsEventTargetFactory.token,
-    requestStateEmittingHandler_requestStateEventTargetFactory.token,
+const lensAssetRepositoryFactory = Injectable("lensAssetRepository", [
+    lensCoreFactory.token,
+    deviceDependentAssetLoaderFactory.token,
+    remoteMediaAssetLoaderFactory.token,
+    staticAssetLoaderFactory.token,
+    metricsEventTargetFactory.token,
+    requestStateEventTargetFactory.token,
 ], (lensCore, deviceDependentAssetLoader, remoteMediaAssetLoader, staticAssetLoader, metrics, requestStateEventTarget) => new LensAssetRepository(lensCore, new Map([
     [lensCore.AssetType.DeviceDependent, ["DeviceDependent", deviceDependentAssetLoader]],
     [lensCore.AssetType.RemoteMediaByUrl, ["RemoteMediaByUrl", remoteMediaAssetLoader]],
@@ -25014,7 +25014,7 @@ if ((minimal_default()).util.Long !== (long_default())) {
  * })
  * ```
  */
-const LensSource_lensSourcesFactory = Injectable_Injectable("lensSources", () => []);
+const lensSourcesFactory = Injectable("lensSources", () => []);
 /**
  * Given a list of LensSources (like the one provided by CameraKit's DI container under the `'lensSources'` token), and
  * a groupId/lensId, return a list of lenses loaded by the first LensSource claiming ownership of the given groupId.
@@ -25231,8 +25231,8 @@ class LensRepository {
 __decorate([
     validate_validate,
     log,
-    __param(0, guard(typeguards_isSafeString)),
-    __param(1, guard(typeguards_isSafeString)),
+    __param(0, guard(isSafeString)),
+    __param(1, guard(isSafeString)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String, String]),
     __metadata("design:returntype", Promise)
@@ -25257,11 +25257,11 @@ __decorate([
 /**
  * @internal
  */
-const LensRepository_lensRepositoryFactory = Injectable_Injectable("LensRepository", [
-    requestStateEmittingHandler_requestStateEventTargetFactory.token,
-    defaultFetchHandler_defaultFetchHandlerFactory.token,
-    LensSource_lensSourcesFactory.token,
-    LensAssetRepository_lensAssetRepositoryFactory.token,
+const lensRepositoryFactory = Injectable("LensRepository", [
+    requestStateEventTargetFactory.token,
+    defaultFetchHandlerFactory.token,
+    lensSourcesFactory.token,
+    lensAssetRepositoryFactory.token,
 ], (requestStateEventTarget, defaultFetchHandler, lensSources, lensAssetRepository) => {
     const lensFetchHandler = new HandlerChainBuilder(defaultFetchHandler)
         .map(createRequestStateEmittingHandler(requestStateEventTarget))
@@ -25269,6 +25269,92 @@ const LensRepository_lensRepositoryFactory = Injectable_Injectable("LensReposito
     return new LensRepository(lensFetchHandler, lensSources, lensAssetRepository);
 });
 //# sourceMappingURL=LensRepository.js.map
+;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/dependency-injection/PartialContainer.js
+
+
+/**
+ * Similar to [Container], with the exception that Services may be provided to a PartialContainer which *does not*
+ * contain all of that Services dependencies.
+ *
+ * For this to remain safe, Services can not be resolved by PartialContainer – it has no `get` method.
+ *
+ * Instead, the PartialContainer must be provided to a [Container] which *does* contain all the dependencies required
+ * by all the Service in the PartialContainer. The resulting [Container] can then resolve these Services.
+ *
+ * PartialContainers are used to create a collection of Services which can then be provided via a simple one-line syntax
+ * to an existing Container (which fulfills the collection's dependencies). It is an organizational tool, allowing
+ * coherent groupings of Services to be defined in one place, then combined elsewhere to form a complete [Container].
+ *
+ * Here's an example of PartialContainer usage:
+ * ```ts
+ * // We can provide fooFactory, even though the PartialContainer doesn't fulfill the Bar dependency.
+ * const fooFactory = Injectable('Foo', ['Bar'] as const, (bar: Bar) => new Foo(bar))
+ * const partialContainer = new PartialContainer({}).provide(fooFactory)
+ *
+ * const barFactory = Injectable('Bar', () => new Bar())
+ * const dependenciesContainer = Container.provides(barFactory)
+ *
+ * const combinedContainer = dependenciesContainer.provides(partialContainer)
+ *
+ * // We can resolve Foo, because the combined container includes Bar, so all of Foo's dependencies are now met.
+ * const foo = combinedContainer.get('Foo')
+ * ```
+ */
+/** @internal */
+class PartialContainer_PartialContainer {
+    constructor(injectables) {
+        this.injectables = injectables;
+    }
+    /**
+     * Create a new PartialContainer which provides a Service created by the given InjectableFunction.
+     *
+     * The InjectableFunction contains metadata specifying the Token by which the created Service will be known, as well
+     * as an ordered list of Tokens to be resolved and provided to the InjectableFunction as arguments.
+     *
+     * This dependencies are allowed to be missing from the PartialContainer, but these dependencies are maintained as a
+     * parameter of the returned PartialContainer. This allows `[Container.provides]` to type check the dependencies and
+     * ensure they can be provided by the Container.
+     *
+     * @param fn A InjectableFunction, taking dependencies as arguments, which returns the Service.
+     */
+    provides(fn) {
+        return new PartialContainer_PartialContainer(Object.assign(Object.assign({}, this.injectables), { [fn.token]: fn }));
+    }
+    /**
+     * In order to create a [Container], the InjectableFunctions maintained by the PartialContainer must be memoized
+     * into Factories that can resolve their dependencies and return the correct Service.
+     *
+     * In particular, this requires access to a "parent" Container to avoid infinite looping in cases where Service A
+     * depends on Service A – this is allowed (as long as the parent container provides Service A), but requires access
+     * to the parent Container to provide the parent implementation of Service A.
+     *
+     * This also means that Services provided by a PartialContainer to a Container via this function will always be
+     * scoped to the Container. In other words, if a PartialContainer containing Service A is provided to both
+     * Container X and Container Y, when Service A is resolved by Container X the InjectableFunction used to create
+     * Service A will be invoked – and when Service A is resolved by Container Y, the InjectableFunction will be invoked
+     * again.
+     *
+     * @param parent A [Container] which provides all the required Dependencies of this PartialContainer.
+     */
+    getFactories(parent) {
+        return Object.fromEntries(entries(this.injectables).map(([token, fn]) => {
+            return [
+                token,
+                memoize((c) => {
+                    return fn(...fn.dependencies.map((t) => {
+                        return t === token
+                            ? parent.get(t)
+                            : c.get(t);
+                    }));
+                }),
+            ];
+        }));
+    }
+    getTokens() {
+        return Object.keys(this.injectables);
+    }
+}
+//# sourceMappingURL=PartialContainer.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/dependency-injection/Container.js
 
 
@@ -25323,16 +25409,16 @@ const CONTAINER = "$container";
  * ```
  */
 /** @internal */
-class Container_Container {
+class Container {
     static provides(fnOrContainer) {
         // Although the `provides` method has overloads that match both members of the union type separately, it does
         // not match the union type itself, so the compiler forces us to branch and handle each type within the union
         // separately. (Maybe in the future the compiler will decide to infer this, but for now this is necessary.)
-        if (fnOrContainer instanceof PartialContainer)
-            return new Container_Container({}).provides(fnOrContainer);
-        if (fnOrContainer instanceof Container_Container)
-            return new Container_Container({}).provides(fnOrContainer);
-        return new Container_Container({}).provides(fnOrContainer);
+        if (fnOrContainer instanceof PartialContainer_PartialContainer)
+            return new Container({}).provides(fnOrContainer);
+        if (fnOrContainer instanceof Container)
+            return new Container({}).provides(fnOrContainer);
+        return new Container({}).provides(fnOrContainer);
     }
     constructor(factories) {
         this.factories = {};
@@ -25370,7 +25456,7 @@ class Container_Container {
         (scopedServices || []).forEach((token) => {
             factories[token] = this.factories[token].delegate;
         });
-        return new Container_Container(factories);
+        return new Container(factories);
     }
     get(token) {
         if (token === CONTAINER)
@@ -25385,7 +25471,7 @@ class Container_Container {
         return factory(this);
     }
     run(fnOrContainer) {
-        if (fnOrContainer instanceof PartialContainer) {
+        if (fnOrContainer instanceof PartialContainer_PartialContainer) {
             const runnableContainer = this.provides(fnOrContainer);
             for (const token of fnOrContainer.getTokens()) {
                 runnableContainer.get(token);
@@ -25397,12 +25483,12 @@ class Container_Container {
         return this;
     }
     provides(fnOrContainer) {
-        if (fnOrContainer instanceof PartialContainer || fnOrContainer instanceof Container_Container) {
-            const factories = fnOrContainer instanceof PartialContainer ? fnOrContainer.getFactories(this) : fnOrContainer.factories;
+        if (fnOrContainer instanceof PartialContainer_PartialContainer || fnOrContainer instanceof Container) {
+            const factories = fnOrContainer instanceof PartialContainer_PartialContainer ? fnOrContainer.getFactories(this) : fnOrContainer.factories;
             // Safety: `this.factories` and `factories` are both properly type checked, so merging them produces
             // a Factories object with keys from both Services and AdditionalServices. The compiler is unable to
             // infer that Factories<A> & Factories<B> == Factories<A & B>, so the cast is required.
-            return new Container_Container(Object.assign(Object.assign({}, this.factories), factories));
+            return new Container(Object.assign(Object.assign({}, this.factories), factories));
         }
         return this.providesService(fnOrContainer);
     }
@@ -25426,7 +25512,7 @@ class Container_Container {
         // MaybeMemoizedFactories object with the expected set of services – but when using the spread operation to
         // merge two objects, the compiler widens the Token type to string. So we must re-narrow via casting.
         const factories = Object.assign(Object.assign({}, this.factories), { [token]: factory });
-        return new Container_Container(factories);
+        return new Container(factories);
     }
 }
 //# sourceMappingURL=Container.js.map
@@ -25956,7 +26042,7 @@ class CameraKitSource_CameraKitSource {
     constructor(sourceInfo, subscriber = {}, deviceInfo = {}) {
         this.sourceInfo = sourceInfo;
         this.subscriber = subscriber;
-        this.deviceInfo = Object.assign(Object.assign({}, defaultDeviceInfo), copyDefinedProperties_copyDefinedProperties(deviceInfo));
+        this.deviceInfo = Object.assign(Object.assign({}, defaultDeviceInfo), copyDefinedProperties(deviceInfo));
     }
     /**
      * Called by {@link CameraKitSession} when this source is set as that session's source.
@@ -26110,7 +26196,7 @@ function closeAudioContext(audioContext) {
 function createUserMediaSource(constraints = { video: true }, options = {}) {
     return __awaiter(this, void 0, void 0, function* () {
         const stream = yield navigator.mediaDevices.getUserMedia(constraints);
-        return MediaStreamSource_createMediaStreamSource(stream, Object.assign({ transform: Transform2D.MirrorX, cameraType: "front" }, options));
+        return createMediaStreamSource(stream, Object.assign({ transform: Transform2D.MirrorX, cameraType: "front" }, options));
     });
 }
 /**
@@ -26128,7 +26214,7 @@ function createUserMediaSource(constraints = { video: true }, options = {}) {
  *
  * @category Rendering
  */
-function MediaStreamSource_createMediaStreamSource(stream, options = {}) {
+function createMediaStreamSource(stream, options = {}) {
     var _a;
     const { facingMode } = stream.getVideoTracks().length > 0 ? stream.getVideoTracks()[0].getSettings() : { facingMode: undefined };
     const detectedCameraType = facingMode === "user" || facingMode === "environment" ? facingMode : undefined;
@@ -26278,7 +26364,7 @@ function createVideoSource(video, options = {}) {
  *
  * @internal
  */
-const logEntries_logEntriesFactory = Injectable_Injectable("logEntries", () => resetLogger().asObservable());
+const logEntriesFactory = Injectable("logEntries", () => resetLogger().asObservable());
 //# sourceMappingURL=logEntries.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/session/LensPerformanceMeasurement.js
 const getDefaultFrameMetricsState = () => ({
@@ -26518,7 +26604,7 @@ function switchMap(project, resultSelector) {
 
 
 const LensPersistenceStore_logger = getLogger("LensPersistenceStore");
-const LensPersistenceStore_lensPersistenceStoreFactory = Injectable_Injectable("lensPersistenceStore", [lensCoreFactory_lensCoreFactory.token], (lensCore) => {
+const lensPersistenceStoreFactory = Injectable("lensPersistenceStore", [lensCoreFactory.token], (lensCore) => {
     const db = new IndexedDBPersistence({ databaseName: "lensPersistenceStore" });
     lensCore.registerSavePersistentStoreCallback((id, data) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
         try {
@@ -29500,7 +29586,7 @@ function showFindGuardianDialog() {
 /**
  * @internal
  */
-const legalPrompt_legalPromptFactory = Injectable_Injectable("legalPrompt", () => {
+const legalPromptFactory = Injectable("legalPrompt", () => {
     return function legalPrompt(privacyPolicy, termsOfService, learnMore, childrenProtectionActRestricted) {
         const legalMessage = childrenProtectionActRestricted
             ? localizedString("legalPromptVariantGMessage")
@@ -29658,7 +29744,7 @@ const getDocumentOrDefault = (documents) => (type) => {
  *
  * @internal
  */
-const legalState_legalStateFactory = Injectable_Injectable("legalState", [remoteConfiguration_remoteConfigurationFactory.token, legalPrompt_legalPromptFactory.token], (remoteConfig, legalPrompt) => {
+const legalStateFactory = Injectable("legalState", [remoteConfigurationFactory.token, legalPromptFactory.token], (remoteConfig, legalPrompt) => {
     const persistance = new ExpiringPersistence(() => tosContentHashExpiry, new IndexedDBPersistence({ databaseName: "Legal" }));
     const getLastAcceptedTosContentHash = () => from_from(persistance.retrieve(tosContentHashKey).catch((error) => legalState_logger.warn(error)));
     const setLastAcceptedTosContentHash = (hash) => persistance.store(tosContentHashKey, hash).catch((error) => legalState_logger.warn(error));
@@ -29936,13 +30022,13 @@ const createLensState = () => {
     // We allow a new lens to be applied at any time, no matter the state.
     inStates("noLensApplied", "applyingLens", "lensApplied"), forActions("applyLens"), map(([a]) => states.applyingLens(a.data.lens))), events.pipe(inStates("applyingLens"), forActions("applyLensComplete"), map(([a]) => states.lensApplied(a.data))), events.pipe(inStates("applyingLens"), forActions("applyLensFailed"), map(() => states.noLensApplied())), events.pipe(inStates("lensApplied"), forActions("removeLensComplete"), map(() => states.noLensApplied()))));
 };
-const lensStateFactory = Injectable_Injectable("lensState", [
-    lensCoreFactory_lensCoreFactory.token,
-    LensRepository_lensRepositoryFactory.token,
-    LensAssetRepository_lensAssetRepositoryFactory.token,
-    LensPersistenceStore_lensPersistenceStoreFactory.token,
-    legalState_legalStateFactory.token,
-    operationalMetricsReporter_operationalMetricReporterFactory.token,
+const lensStateFactory = Injectable("lensState", [
+    lensCoreFactory.token,
+    lensRepositoryFactory.token,
+    lensAssetRepositoryFactory.token,
+    lensPersistenceStoreFactory.token,
+    legalStateFactory.token,
+    operationalMetricReporterFactory.token,
 ], (lensCore, lensRepository, lensAssetRepository, lensPersistence, legalState, operationalMetricsReporter) => {
     const lensState = createLensState();
     let firstLensApply = true;
@@ -30162,7 +30248,7 @@ const createSessionState = () => {
         return merge(events.pipe(forActions("resume"), map(([a]) => states.active(a.data))), events.pipe(forActions("suspend"), map(() => states.inactive())), events.pipe(forActions("destroy"), map(() => states.destroyed())));
     });
 };
-const sessionStateFactory = Injectable_Injectable("sessionState", () => createSessionState());
+const sessionStateFactory = Injectable("sessionState", () => createSessionState());
 //# sourceMappingURL=sessionState.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/session/LensKeyboard.js
 
@@ -30258,7 +30344,7 @@ class LensKeyboard {
 /**
  * @internal
  */
-const lensKeyboardFactory = Injectable_Injectable("lensKeyboard", [lensStateFactory.token], (lensState) => new LensKeyboard(lensState));
+const lensKeyboardFactory = Injectable("lensKeyboard", [lensStateFactory.token], (lensState) => new LensKeyboard(lensState));
 //# sourceMappingURL=LensKeyboard.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/session/CameraKitSessionEvents.js
 /**
@@ -30578,7 +30664,7 @@ class CameraKitSession {
             // For convenience, we allow callers to pass in native objects (e.g. MediaStream) as well as CameraKitSource.
             // Native objects are wrapped in corresponding CameraKitSource classes with default options.
             const cameraKitSource = source instanceof MediaStream
-                ? MediaStreamSource_createMediaStreamSource(source, options)
+                ? createMediaStreamSource(source, options)
                 : source instanceof HTMLVideoElement
                     ? createVideoSource(source, options)
                     : source;
@@ -30729,13 +30815,13 @@ __decorate([
 /**
  * @internal
  */
-const cameraKitSessionFactory = Injectable_Injectable("CameraKitSession", [
-    lensCoreFactory_lensCoreFactory.token,
-    logEntries_logEntriesFactory.token,
+const cameraKitSessionFactory = Injectable("CameraKitSession", [
+    lensCoreFactory.token,
+    logEntriesFactory.token,
     lensKeyboardFactory.token,
     sessionStateFactory.token,
     lensStateFactory.token,
-    pageVisibility_pageVisibilityFactory.token,
+    pageVisibilityFactory.token,
 ], (lensCore, logEntries, keyboard, sessionState, lensState, pageVisibility) => new CameraKitSession(keyboard, lensCore, sessionState, lensState, logEntries, pageVisibility));
 //# sourceMappingURL=CameraKitSession.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/lens/assets/LensAssetsProvider.js
@@ -30758,10 +30844,10 @@ const maxConsecutiveErrors = 3;
  * initialized, the registry of the asset provider function will fail silently and no remote assets will be loaded.
  * @internal
  */
-const registerLensAssetsProvider = Injectable_Injectable("registerLensAssetsProvider", [
-    lensCoreFactory_lensCoreFactory.token,
-    LensRepository_lensRepositoryFactory.token,
-    LensAssetRepository_lensAssetRepositoryFactory.token,
+const registerLensAssetsProvider = Injectable("registerLensAssetsProvider", [
+    lensCoreFactory.token,
+    lensRepositoryFactory.token,
+    lensAssetRepositoryFactory.token,
     lensStateFactory.token,
 ], (lensCore, lensRepository, lensAssetRepository, lensState) => {
     const consecutiveErrorsPerAsset = new Map();
@@ -32355,7 +32441,7 @@ function isUriResponse(value) {
  * An extension point for client URI handlers.
  * @internal
  */
-const UriHandlers_uriHandlersFactory = Injectable_Injectable("UriHandlers", () => {
+const uriHandlersFactory = Injectable("UriHandlers", () => {
     const uriHandlers = [];
     return uriHandlers;
 });
@@ -32422,7 +32508,7 @@ function handleLensApplicationEnd(lensRequestState, ...lensIds) {
         }
     }
 }
-const RemoteApiServices_remoteApiServicesFactory = Injectable_Injectable("remoteApiServices", () => {
+const remoteApiServicesFactory = Injectable("remoteApiServices", () => {
     const remoteApiServices = [];
     return remoteApiServices;
 });
@@ -32576,15 +32662,15 @@ const uriHandlersRegister_logger = getLogger("uriHandlersRegister");
  * Registers URI handlers within LensCore.
  * @internal
  */
-const registerUriHandlers = Injectable_Injectable("registerUriHandlers", [
-    lensCoreFactory_lensCoreFactory.token,
+const registerUriHandlers = Injectable("registerUriHandlers", [
+    lensCoreFactory.token,
     lensStateFactory.token,
-    UriHandlers_uriHandlersFactory.token,
+    uriHandlersFactory.token,
     lensKeyboardFactory.token,
-    RemoteApiServices_remoteApiServicesFactory.token,
-    LensRepository_lensRepositoryFactory.token,
+    remoteApiServicesFactory.token,
+    lensRepositoryFactory.token,
     sessionStateFactory.token,
-    operationalMetricsReporter_operationalMetricReporterFactory.token,
+    operationalMetricReporterFactory.token,
 ], (lensCore, lensState, userHandlers, lensKeyboard, remoteApiServices, lensRepository, sessionState, operationalMetricsReporter) => {
     if (!isUriHandlers(userHandlers)) {
         throw new Error("Expected an array of UriHandler objects");
@@ -32632,92 +32718,6 @@ const registerUriHandlers = Injectable_Injectable("registerUriHandlers", [
     }
 });
 //# sourceMappingURL=uriHandlersRegister.js.map
-;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/dependency-injection/PartialContainer.js
-
-
-/**
- * Similar to [Container], with the exception that Services may be provided to a PartialContainer which *does not*
- * contain all of that Services dependencies.
- *
- * For this to remain safe, Services can not be resolved by PartialContainer – it has no `get` method.
- *
- * Instead, the PartialContainer must be provided to a [Container] which *does* contain all the dependencies required
- * by all the Service in the PartialContainer. The resulting [Container] can then resolve these Services.
- *
- * PartialContainers are used to create a collection of Services which can then be provided via a simple one-line syntax
- * to an existing Container (which fulfills the collection's dependencies). It is an organizational tool, allowing
- * coherent groupings of Services to be defined in one place, then combined elsewhere to form a complete [Container].
- *
- * Here's an example of PartialContainer usage:
- * ```ts
- * // We can provide fooFactory, even though the PartialContainer doesn't fulfill the Bar dependency.
- * const fooFactory = Injectable('Foo', ['Bar'] as const, (bar: Bar) => new Foo(bar))
- * const partialContainer = new PartialContainer({}).provide(fooFactory)
- *
- * const barFactory = Injectable('Bar', () => new Bar())
- * const dependenciesContainer = Container.provides(barFactory)
- *
- * const combinedContainer = dependenciesContainer.provides(partialContainer)
- *
- * // We can resolve Foo, because the combined container includes Bar, so all of Foo's dependencies are now met.
- * const foo = combinedContainer.get('Foo')
- * ```
- */
-/** @internal */
-class PartialContainer_PartialContainer {
-    constructor(injectables) {
-        this.injectables = injectables;
-    }
-    /**
-     * Create a new PartialContainer which provides a Service created by the given InjectableFunction.
-     *
-     * The InjectableFunction contains metadata specifying the Token by which the created Service will be known, as well
-     * as an ordered list of Tokens to be resolved and provided to the InjectableFunction as arguments.
-     *
-     * This dependencies are allowed to be missing from the PartialContainer, but these dependencies are maintained as a
-     * parameter of the returned PartialContainer. This allows `[Container.provides]` to type check the dependencies and
-     * ensure they can be provided by the Container.
-     *
-     * @param fn A InjectableFunction, taking dependencies as arguments, which returns the Service.
-     */
-    provides(fn) {
-        return new PartialContainer_PartialContainer(Object.assign(Object.assign({}, this.injectables), { [fn.token]: fn }));
-    }
-    /**
-     * In order to create a [Container], the InjectableFunctions maintained by the PartialContainer must be memoized
-     * into Factories that can resolve their dependencies and return the correct Service.
-     *
-     * In particular, this requires access to a "parent" Container to avoid infinite looping in cases where Service A
-     * depends on Service A – this is allowed (as long as the parent container provides Service A), but requires access
-     * to the parent Container to provide the parent implementation of Service A.
-     *
-     * This also means that Services provided by a PartialContainer to a Container via this function will always be
-     * scoped to the Container. In other words, if a PartialContainer containing Service A is provided to both
-     * Container X and Container Y, when Service A is resolved by Container X the InjectableFunction used to create
-     * Service A will be invoked – and when Service A is resolved by Container Y, the InjectableFunction will be invoked
-     * again.
-     *
-     * @param parent A [Container] which provides all the required Dependencies of this PartialContainer.
-     */
-    getFactories(parent) {
-        return Object.fromEntries(entries(this.injectables).map(([token, fn]) => {
-            return [
-                token,
-                memoize_memoize((c) => {
-                    return fn(...fn.dependencies.map((t) => {
-                        return t === token
-                            ? parent.get(t)
-                            : c.get(t);
-                    }));
-                }),
-            ];
-        }));
-    }
-    getTokens() {
-        return Object.keys(this.injectables);
-    }
-}
-//# sourceMappingURL=PartialContainer.js.map
 ;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/operators/scanInternals.js
 
 function scanInternals(accumulator, seed, hasSeed, emitOnNext, emitBeforeComplete) {
@@ -32839,7 +32839,7 @@ function reportExceptionToBlizzard(logEntries, metricsEventTarget, reporter, len
  *
  * @internal
  */
-const reportGlobalException_reportGlobalException = Injectable_Injectable("reportGlobalException", [logEntries_logEntriesFactory.token, metricsEventTarget_metricsEventTargetFactory.token, operationalMetricsReporter_operationalMetricReporterFactory.token], (logEntries, metricsEventTarget, reporter) => {
+const reportGlobalException = Injectable("reportGlobalException", [logEntriesFactory.token, metricsEventTargetFactory.token, operationalMetricReporterFactory.token], (logEntries, metricsEventTarget, reporter) => {
     // Initially we log exceptions without any lens context
     const cancellationSubject = new Subject();
     reportExceptionToBlizzard(logEntries.pipe(takeUntil(cancellationSubject)), metricsEventTarget, reporter);
@@ -32862,7 +32862,7 @@ const reportGlobalException_reportGlobalException = Injectable_Injectable("repor
  *
  * @internal
  */
-const reportSessionException = Injectable_Injectable("reportSessionException", [reportGlobalException_reportGlobalException.token, lensStateFactory.token], (globalExceptionReporter, lensState) => {
+const reportSessionException = Injectable("reportSessionException", [reportGlobalException.token, lensStateFactory.token], (globalExceptionReporter, lensState) => {
     globalExceptionReporter.attachLensContext(lensState);
 });
 //# sourceMappingURL=reportSessionException.js.map
@@ -32875,7 +32875,7 @@ const reportSessionException = Injectable_Injectable("reportSessionException", [
 
 // Allowlist the benchmarks we wish to report.
 const reportableBenchmarks = ["gflops"];
-const reportBenchmarks = Injectable_Injectable("reportBenchmarks", [metricsEventTarget_metricsEventTargetFactory.token, operationalMetricsReporter_operationalMetricReporterFactory.token, configurationToken], (metricsEventTarget, reporter, config) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
+const reportBenchmarks = Injectable("reportBenchmarks", [metricsEventTargetFactory.token, operationalMetricReporterFactory.token, configurationToken], (metricsEventTarget, reporter, config) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
     if (config.lensPerformance === undefined)
         return;
     // Safety: config.lensPerformance cannot reject – all Promises contained in CameraKitConfiguration have
@@ -32958,10 +32958,10 @@ const isLensOrAssetRequest = (value) => {
     // Safety: the cast makes the type less specific so we can check if any string is present in the tuple.
     return typeof requestType === "string" && relevantRequestTypes.includes(requestType);
 };
-const reportLensAndAssetDownload = Injectable_Injectable("reportLensAndAssetDownload", [
-    metricsEventTarget_metricsEventTargetFactory.token,
-    operationalMetricsReporter_operationalMetricReporterFactory.token,
-    requestStateEmittingHandler_requestStateEventTargetFactory.token,
+const reportLensAndAssetDownload = Injectable("reportLensAndAssetDownload", [
+    metricsEventTargetFactory.token,
+    operationalMetricReporterFactory.token,
+    requestStateEventTargetFactory.token,
 ], (metricsEventTarget, reporter, requestStateEventTarget) => {
     scan_scan({ name: "inProgress", inProgress: new Map() })(requestStateEventTarget, ["started", "completed", "errored"], (state, event) => {
         const { inProgress } = state;
@@ -33096,7 +33096,7 @@ const getStatus = (event) => {
 const isRelevantRequest = (value) => {
     return isLensOrAssetRequest(value) || value["requestType"] === COF_REQUEST_TYPE;
 };
-const reportHttpMetrics = Injectable_Injectable("reportHttpMetrics", [operationalMetricsReporter_operationalMetricReporterFactory.token, requestStateEmittingHandler_requestStateEventTargetFactory.token], (reporter, requestStateEventTarget) => {
+const reportHttpMetrics = Injectable("reportHttpMetrics", [operationalMetricReporterFactory.token, requestStateEventTargetFactory.token], (reporter, requestStateEventTarget) => {
     scan_scan({ name: "inProgress", inProgress: new Map() })(requestStateEventTarget, ["started", "completed", "errored"], (state, event) => {
         var _a;
         const { inProgress } = state;
@@ -33693,7 +33693,7 @@ var KitType;
 /**
  * @internal
  */
-const reportLegalState = Injectable_Injectable("reportLegalState", [legalState_legalStateFactory.token, metricsEventTarget_metricsEventTargetFactory.token, operationalMetricsReporter_operationalMetricReporterFactory.token], (legalState, metricsEventTarget, operationalMetricsReporter) => {
+const reportLegalState = Injectable("reportLegalState", [legalStateFactory.token, metricsEventTargetFactory.token, operationalMetricReporterFactory.token], (legalState, metricsEventTarget, operationalMetricsReporter) => {
     legalState.events
         .pipe(forActions("accept", "reject"), map(([{ data, name }]) => ({
         name: "legalPrompt",
@@ -33726,7 +33726,7 @@ const reportLegalState = Injectable_Injectable("reportLegalState", [legalState_l
 /**
  * @internal
  */
-const reportLensValidationFailed = Injectable_Injectable("reportLensValidationFailed", [lensStateFactory.token, metricsEventTarget_metricsEventTargetFactory.token], (lensState, metricsEventTarget) => {
+const reportLensValidationFailed = Injectable("reportLensValidationFailed", [lensStateFactory.token, metricsEventTargetFactory.token], (lensState, metricsEventTarget) => {
     lensState.events
         .pipe(forActions("applyLensFailed"), filter(([a]) => a.data.error.name === "LensContentValidationError"))
         .subscribe({
@@ -33938,12 +33938,12 @@ function isFirstTimeWithinPeriods(lensId, persistence) {
 /**
  * @internal
  */
-const reportLensView = Injectable_Injectable("reportLensView", [
+const reportLensView = Injectable("reportLensView", [
     cameraKitSessionFactory.token,
     lensStateFactory.token,
     sessionStateFactory.token,
-    metricsEventTarget_metricsEventTargetFactory.token,
-    operationalMetricsReporter_operationalMetricReporterFactory.token,
+    metricsEventTargetFactory.token,
+    operationalMetricReporterFactory.token,
     configurationToken,
 ], (session, lensState, sessionState, metricsEventTarget, operationalMetricsReporter, configuration) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
     var _a;
@@ -34050,7 +34050,7 @@ const reportLensWait_viewTimeThresholdSec = 0.1;
  *
  * @internal
  */
-const reportLensWait = Injectable_Injectable("reportLensWait", [lensStateFactory.token, metricsEventTarget_metricsEventTargetFactory.token, operationalMetricsReporter_operationalMetricReporterFactory.token], (lensState, metricsEventTarget, reporter) => {
+const reportLensWait = Injectable("reportLensWait", [lensStateFactory.token, metricsEventTargetFactory.token, operationalMetricReporterFactory.token], (lensState, metricsEventTarget, reporter) => {
     lensState.events
         .pipe(forActions("applyLens"), mergeMap(([a]) => {
         const lensId = a.data.lens.id;
@@ -34100,7 +34100,7 @@ const reportLensWait = Injectable_Injectable("reportLensWait", [lensStateFactory
 /**
  * @internal
  */
-const reportUserSession = Injectable_Injectable("reportUserSession", [metricsEventTarget_metricsEventTargetFactory.token], (metricsEventTarget) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
+const reportUserSession = Injectable("reportUserSession", [metricsEventTargetFactory.token], (metricsEventTarget) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
     var _a, _b;
     const userSessionKey = "userSessionInfo";
     const db = new IndexedDBPersistence({ databaseName: "SessionHistory" });
@@ -34197,8 +34197,8 @@ class Count extends Metric {
  *
  * @internal
  */
-const reportPlatformCapabilities = Injectable_Injectable("reportPlatformCapabilities", [operationalMetricsReporter_operationalMetricReporterFactory.token], (operationalMetricsReporter) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
-    const { webgl, wasm, webxr } = yield platformCapabilities_getPlatformCapabilities();
+const reportPlatformCapabilities = Injectable("reportPlatformCapabilities", [operationalMetricReporterFactory.token], (operationalMetricsReporter) => tslib_es6_awaiter(void 0, void 0, void 0, function* () {
+    const { webgl, wasm, webxr } = yield getPlatformCapabilities();
     operationalMetricsReporter.report(Count.count("platform_webgl", webgl.supported ? 1 : 0));
     operationalMetricsReporter.report(Count.count("platform_wasm", wasm.supported ? 1 : 0));
     operationalMetricsReporter.report(Count.count("platform_webxr", webxr.supported ? 1 : 0));
@@ -34223,7 +34223,7 @@ const reportPlatformCapabilities = Injectable_Injectable("reportPlatformCapabili
  * The businessEventsReporter is special, it doesn't create any of its own metrics, it simply listens to the global
  * metricsEventTarget and reports metrics emitted there to our backend.
  */
-const reporters_reportGloballyScopedMetrics = new PartialContainer_PartialContainer({})
+const reportGloballyScopedMetrics = new PartialContainer_PartialContainer({})
     .provides(reportHttpMetrics)
     .provides(reportBenchmarks)
     .provides(reportLensAndAssetDownload)
@@ -34449,7 +34449,7 @@ const lensClientInterface_logger = getLogger("lensClientInterface");
  * @param lensCore LensCore instance to register in.
  * @param sessionErrors EventTarget to dispatch errors in.
  */
-const registerLensClientInterfaceHandler = Injectable_Injectable("registerLensClientInterfaceHandler", [lensCoreFactory_lensCoreFactory.token], (lensCore) => {
+const registerLensClientInterfaceHandler = Injectable("registerLensClientInterfaceHandler", [lensCoreFactory.token], (lensCore) => {
     // Make sure we are compatible with previous LensCore versions
     if (!lensCore.setClientInterfaceRequestHandler) {
         lensClientInterface_logger.warn("Current LensCore version doesn't support lens client interface requests");
@@ -34471,7 +34471,7 @@ const registerLensClientInterfaceHandler = Injectable_Injectable("registerLensCl
 
 
 
-const setPreloadedConfiguration = Injectable_Injectable("setPreloadedConfiguration", [lensCoreFactory_lensCoreFactory.token, remoteConfiguration_remoteConfigurationFactory.token], (lensCore, remoteConfiguration) => {
+const setPreloadedConfiguration = Injectable("setPreloadedConfiguration", [lensCoreFactory.token, remoteConfigurationFactory.token], (lensCore, remoteConfiguration) => {
     remoteConfiguration
         .getNamespace(Namespace.LENS_CORE_CONFIG)
         .pipe(take(1))
@@ -34650,11 +34650,11 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CameraKit.prototype, "destroy", null);
 /** @internal */
-const CameraKit_cameraKitFactory = Injectable_Injectable("CameraKit", [
-    LensRepository_lensRepositoryFactory.token,
-    metricsEventTarget_metricsEventTargetFactory.token,
-    lensCoreFactory_lensCoreFactory.token,
-    pageVisibility_pageVisibilityFactory.token,
+const cameraKitFactory = Injectable("CameraKit", [
+    lensRepositoryFactory.token,
+    metricsEventTargetFactory.token,
+    lensCoreFactory.token,
+    pageVisibilityFactory.token,
     CONTAINER,
 ], (lensRepository, metrics, lensCore, pageVisibility, container) => new CameraKit(lensRepository, lensCore, pageVisibility, container, metrics));
 //# sourceMappingURL=CameraKit.js.map
@@ -34664,8 +34664,8 @@ const CameraKit_cameraKitFactory = Injectable_Injectable("CameraKit", [
 /**
  * Throw if the current platform is not capable of running Camera Kit.
  */
-function assertPlatformSupported_assertPlatformSupported() {
-    return __awaiter(this, void 0, void 0, function* () {
+function assertPlatformSupported() {
+    return tslib_es6_awaiter(this, void 0, void 0, function* () {
         const { wasm, webgl } = yield getPlatformCapabilities();
         if (!wasm.supported)
             throw wasm.error;
@@ -34926,12 +34926,12 @@ function getAppVendorAndPartnerUuid(configuration, remoteConfiguration) {
         return of({ appVendorUuid: undefined, partnerUuid: configuration.analyticsId });
     }));
 }
-const businessEventsReporter_businessEventsReporterFactory = Injectable_Injectable("businessEventsReporter", [
-    metricsEventTarget_metricsEventTargetFactory.token,
-    metricsHandler_metricsHandlerFactory.token,
-    pageVisibility_pageVisibilityFactory.token,
+const businessEventsReporterFactory = Injectable("businessEventsReporter", [
+    metricsEventTargetFactory.token,
+    metricsHandlerFactory.token,
+    pageVisibilityFactory.token,
     configurationToken,
-    remoteConfiguration_remoteConfigurationFactory.token,
+    remoteConfigurationFactory.token,
 ], (metricsEventTarget, metricsHandler, pageVisibility, configuration, remoteConfiguration) => {
     const appVendorAndPartnerUuid = getAppVendorAndPartnerUuid(configuration, remoteConfiguration);
     /**
@@ -35016,7 +35016,7 @@ const businessEventsReporter_businessEventsReporterFactory = Injectable_Injectab
  *
  * @internal
  */
-const registerLogEntriesSubscriber_registerLogEntriesSubscriber = Injectable_Injectable("registerLogEntriesSubscriber", [configurationToken, logEntries_logEntriesFactory.token], (configuration, logEntries) => {
+const registerLogEntriesSubscriber = Injectable("registerLogEntriesSubscriber", [configurationToken, logEntriesFactory.token], (configuration, logEntries) => {
     logEntries
         .pipe(filter((entry) => logLevelMap[entry.level] >= logLevelMap[configuration.logLevel]))
         .subscribe((logEntry) => {
@@ -35146,7 +35146,7 @@ const Err = (value) => new ErrResult(value);
  *
  * @internal
  */
-const grpcHandler_gprcHandlerFactory = Injectable_Injectable("grpcHandler", [configurationToken, cameraKitServiceFetchHandlerFactory_cameraKitServiceFetchHandlerFactory.token], (configuration, fetchHandler) => {
+const gprcHandlerFactory = Injectable("grpcHandler", [configurationToken, cameraKitServiceFetchHandlerFactory.token], (configuration, fetchHandler) => {
     const host = `https://${configuration.apiHostname}`;
     // We define our own Transport so that we can use our custom `fetch` implementation. This is important for two
     // reasons:
@@ -35226,7 +35226,7 @@ const grpcHandler_gprcHandlerFactory = Injectable_Injectable("grpcHandler", [con
 
 
 
-const lensesClient_lensesClientFactory = Injectable_Injectable("lensesClient", [grpcHandler_gprcHandlerFactory.token], (grpcHandler) => createTsProtoClient(LensesDefinition, grpcHandler));
+const lensesClientFactory = Injectable("lensesClient", [gprcHandlerFactory.token], (grpcHandler) => createTsProtoClient(LensesDefinition, grpcHandler));
 //# sourceMappingURL=lensesClient.js.map
 // EXTERNAL MODULE: ./node_modules/protobufjs/index.js
 var protobufjs = __webpack_require__(281);
@@ -35246,7 +35246,7 @@ var protobufjs = __webpack_require__(281);
  *
  * @internal
  */
-const cameraKitLensSource_cameraKitLensSourceFactory = ConcatInjectable(LensSource_lensSourcesFactory.token, [lensesClient_lensesClientFactory.token], (lensesClient) => ({
+const cameraKitLensSourceFactory = ConcatInjectable(lensSourcesFactory.token, [lensesClientFactory.token], (lensesClient) => ({
     // This LensSource will claim ownership of all lens groups -- it should be used as the last element in a
     // list of LensSources, as a catch-all to load any lens groups not claimed by other LensSources.
     isGroupOwner() {
@@ -35335,10 +35335,10 @@ const cameraKitLensSource_cameraKitLensSourceFactory = ConcatInjectable(LensSour
 
 const bootstrapCameraKit_logger = getLogger("bootstrapCameraKit");
 // The following errors are not wrapped with BootstrapError and bubble up as is.
-const nonWrappableErrors = (/* unused pure expression or super */ null && ([
+const nonWrappableErrors = [
     "ConfigurationError",
     "PlatformNotSupportedError",
-]));
+];
 /**
  * Returns true if given error has to be wrapped with BootstrapError.
  */
@@ -35390,9 +35390,9 @@ function shouldWrapError(error) {
  *
  * @category Bootstrapping and Configuration
  */
-function bootstrapCameraKit_bootstrapCameraKit(configuration, provide) {
-    return __awaiter(this, void 0, void 0, function* () {
-        console.info(`Camera Kit SDK: ${environment.PACKAGE_VERSION} (${lensCoreWasm.version}/${lensCoreWasm.buildNumber})`);
+function bootstrapCameraKit(configuration, provide) {
+    return tslib_es6_awaiter(this, void 0, void 0, function* () {
+        console.info(`Camera Kit SDK: ${environment_namespaceObject.l} (${lensCoreWasmVersions_namespaceObject.version}/${lensCoreWasmVersions_namespaceObject.buildNumber})`);
         try {
             const startTimeMs = performance.now();
             assert(isSafeString(configuration.apiToken), configurationError("Invalid or unsafe apiToken provided."));
@@ -35711,28 +35711,6 @@ function createImageSource(image, options = {}) {
 ;// CONCATENATED MODULE: ./src/main.js
 
 
-// Define your target location coordinates
-const targetLocation = {
-  latitude: 28.454224, // Replace with your target latitude
-  longitude: 77.0807039, // Replace with your target longitude
-};
-
-function calculateDistance(lat1, lon1, lat2, lon2) {
-  const R = 6371e3; // metres
-  const φ1 = lat1 * Math.PI / 180; // φ, λ in radians
-  const φ2 = lat2 * Math.PI / 180;
-  const Δφ = (lat2 - lat1) * Math.PI / 180;
-  const Δλ = (lon2 - lon1) * Math.PI / 180;
-
-  const a = Math.sin(Δφ / 2) * Math.sin(Δφ / 2) +
-    Math.cos(φ1) * Math.cos(φ2) *
-    Math.sin(Δλ / 2) * Math.sin(Δλ / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-
-  const distance = R * c; // in metres
-  return distance;
-}
-
 function initCameraKit() {
   (async function() {
     // Define your custom service with a modified getRequestHandler function
@@ -35784,32 +35762,9 @@ function initCameraKit() {
   })();
 }
 
-function checkLocationAndInit() {
-  if ("geolocation" in navigator) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      const distance = calculateDistance(
-        position.coords.latitude,
-        position.coords.longitude,
-        targetLocation.latitude,
-        targetLocation.longitude
-      );
+// Call this function on page load or after a user interaction
+initCameraKit();
 
-      if (distance <= 20000) {
-        initCameraKit();
-      } else {
-        alert("Sorry, you're outside the Leap Project.");
-      }
-    }, function(error) {
-      alert(`ERROR(${error.code}): ${error.message}`);
-    }, {
-      maximumAge: 60000,
-      timeout: 5000,
-      enableHighAccuracy: true
-    });
-  } else {
-    alert("Geolocation is not supported by your browser.");
-  }
-}
 })();
 
 /******/ })()

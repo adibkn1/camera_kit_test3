@@ -57,17 +57,3 @@ body {
     font-size:60px; /* Adjust font size for desktop */
 }
 
-#couponDisplay {
-  position: fixed;
-    bottom: 50%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #ff0e0e;
-    color: #ffffff;
-    border: none;
-    border-radius: 25px;
-    padding: 20px 80px;
-    cursor: pointer;
-    display: none; /* Initially hidden */
-    font-size:100px; /* Adjust font size for desktop */
-}
