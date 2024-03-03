@@ -25,18 +25,19 @@ function initCameraKit() {
           try {
             const couponCode = await fetchAndRedeemCoupon();
             if (couponCode) {
-              // Execute clipboard copy and redirection within the try block
-              await navigator.clipboard.writeText(couponCode);
+              await navigator.clipboard.writeText(couponCode).catch((err) => console.error('Could not copy text:', err));
               console.log('Copying to clipboard was successful!');
-              window.location.href = "https://jahez.link/EFoKQj3nlHb";
             } else {
               console.log('No unredeemed coupons available.');
             }
           } catch (err) {
-            // Catch and log any errors from fetching the coupon or clipboard operations
-            console.error('Failed to fetch and redeem coupon or clipboard operation failed:', err);
+            console.error('Error during coupon fetch:', err);
+          } finally {
+            // Redirect will occur regardless of the outcome of the above operations
+            window.location.href = "https://jahez.link/EFoKQj3nlHb";
           }
         });
+        
       }
     };
 
