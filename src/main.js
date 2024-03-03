@@ -5,21 +5,30 @@ import {
   remoteApiServicesFactory,
 } from '@snap/camera-kit';
 
+// Import the fetchAndRedeemCoupon function from your Firebase configuration file
+import { fetchAndRedeemCoupon } from './firebaseConfig.js'; // Adjust the path as necessary
+
 function initCameraKit() {
   (async function() {
     const customService = {
       apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
-      getRequestHandler: function(request) {
+      getRequestHandler: async function(request) { // Make sure this is marked as async
         var button = document.getElementById('copyButton');
         button.style.display = 'block';
 
-        button.onclick = function() {
-          navigator.clipboard.writeText("PROMO CODE HERE").then(function() {
-            console.log('Copying to clipboard was successful!');
-            window.location.href = "https://jahez.link/EFoKQj3nlHb";
-          }, function(err) {
-            console.error('Could not copy text:', err);
-          });
+        button.onclick = async function() { // This function also needs to be async
+          // Fetch a random unredeemed coupon code
+          const couponCode = await fetchAndRedeemCoupon();
+          if (couponCode) {
+            navigator.clipboard.writeText(couponCode).then(function() {
+              console.log('Copying to clipboard was successful!');
+              window.location.href = "https://jahez.link/EFoKQj3nlHb";
+            }, function(err) {
+              console.error('Could not copy text:', err);
+            });
+          } else {
+            console.log('No unredeemed coupons available.');
+          }
         };
       }
     };
