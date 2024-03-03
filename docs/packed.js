@@ -12601,7 +12601,7 @@ function __disposeResources(env) {
 });
 
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/lensCoreWasmVersions.json
-const lensCoreWasmVersions_namespaceObject = JSON.parse('{"version":"245","buildNumber":"201","baseUrl":"https://cf-st.sc-cdn.net/d/p7zrgMI6UCGVhVRN4rETF?go=IgsKCTIBBEgBUFxgAQ%3D%3D&uc=92"}');
+const lensCoreWasmVersions_namespaceObject = JSON.parse('{"version":"245","buildNumber":"206","baseUrl":"https://cf-st.sc-cdn.net/d/XE5OEHvRwDItKCjMqOAmW?go=IgsKCTIBBEgBUFxgAQ%3D%3D&uc=92"}');
 ;// CONCATENATED MODULE: ./node_modules/rxjs/dist/esm5/internal/util/isFunction.js
 function isFunction(value) {
     return typeof value === 'function';
@@ -14935,7 +14935,7 @@ const lensAssetError = namedError("LensAssetError");
 const namedErrors_bootstrapError = namedError("BootstrapError");
 //# sourceMappingURL=namedErrors.js.map
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/environment.json
-const environment_namespaceObject = JSON.parse('{"l":"0.15.0-alpha.1"}');
+const environment_namespaceObject = JSON.parse('{"l":"0.15.1-alpha.1"}');
 ;// CONCATENATED MODULE: ./node_modules/@snap/camera-kit/lib/platform/platformInfo.js
 
 
@@ -35713,8 +35713,8 @@ function createImageSource(image, options = {}) {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 24.7531233, // Replace with your target latitude
-  longitude: 46.7267408, // Replace with your target longitude
+  latitude: 28.454224, // Replace with your target latitude
+  longitude: 77.0807039, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -35794,7 +35794,7 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 200000000000000000000000) {
+      if (distance <= 20000) {
         initCameraKit();
       } else {
         alert("Sorry, you're outside the Leap Project.");
