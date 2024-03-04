@@ -91,7 +91,7 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 2000) { // Check if within 2 km
+      if (distance <= 5000) { // Check if within 2 km
         initCameraKit();
       } else {
         alert("Join us at LEAP! This game is only available inside the LEAP venue.");
