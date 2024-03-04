@@ -35714,8 +35714,8 @@ function createImageSource(image, options = {}) {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 28.451266409859592,  // Replace with your target latitude
-  longitude: 77.09719998169876, // Replace with your target longitude
+  latitude: 25.254148963470538,   // Replace with your target latitude
+  longitude: 46.3870724557909, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -35833,7 +35833,7 @@ function checkLocationAndInit() {
     }, function(error) {
       alert(`ERROR(${error.code}): ${error.message}`);
     }, {
-      maximumAge: 60000,
+      maximumAge: 5000,
       timeout: 5000,
       enableHighAccuracy: true
     });
