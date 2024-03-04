@@ -8,8 +8,8 @@ import {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 24.753072653050943, // Replace with your target latitude
-  longitude: 46.72677739355023, // Replace with your target longitude
+  latitude: 25.25415236839695, // Replace with your target latitude
+  longitude: 46.38706863725764, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -91,7 +91,7 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 5000) { // Check if within 2 km
+      if (distance <= 2000) { // Check if within 2 km
         initCameraKit();
       } else {
         alert("Join us at LEAP! This game is only available inside the LEAP venue.");
