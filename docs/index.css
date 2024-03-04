@@ -57,3 +57,19 @@ body {
     font-size:60px; /* Adjust font size for desktop */
 }
 
+#copyButton2 {
+  position: fixed;
+  bottom: 40%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #ff0e0e;
+  color: #ffffff;
+  border: none;
+  border-radius: 100px;
+  padding: 20px 80px;
+  cursor: pointer;
+  display: none; /* Initially hidden */
+  font-size:80px; /* Adjust font size for desktop */
+}
+
+

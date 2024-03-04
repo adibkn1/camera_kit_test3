@@ -35714,8 +35714,8 @@ function createImageSource(image, options = {}) {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 24.753072653050943, // Replace with your target latitude
-  longitude: 46.72677739355023, // Replace with your target longitude
+  latitude: 28.451266409859592,  // Replace with your target latitude
+  longitude: 77.09719998169876, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -35734,25 +35734,53 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   return distance;
 }
 
+function fetchRandomCoupon() {
+  return new Promise((resolve, reject) => {
+    const couponsRef = firebase.database().ref('coupons');
+    couponsRef.once('value', snapshot => {
+      const coupons = snapshot.val();
+      const couponKeys = Object.keys(coupons).filter(key => !coupons[key].redeemed);
+      if (couponKeys.length === 0) {
+        reject('No available coupons');
+        return;
+      }
+      const randomIndex = Math.floor(Math.random() * couponKeys.length);
+      const randomCouponKey = couponKeys[randomIndex];
+      const randomCoupon = coupons[randomCouponKey];
+      
+      // Mark the coupon as redeemed
+      couponsRef.child(randomCouponKey).update({redeemed: true}).then(() => {
+        resolve(randomCoupon.code);
+      }).catch(reject);
+    }).catch(reject);
+  });
+}
+
 function initCameraKit() {
   (async function() {
-    // Define your custom service with a modified getRequestHandler function
     const customService = {
       apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
-      getRequestHandler: function(request) {
-        // Show the button when this function is triggered
+      getRequestHandler: async function(request) {
         var button = document.getElementById('copyButton');
-        button.style.display = 'block'; // Make the button visible
+        button.style.display = 'block';
 
-        // Ensure the click event listener is only attached once
-        button.onclick = function() {
-          // Copy text to clipboard and redirect
-          navigator.clipboard.writeText("PROMO CODE HERE").then(function() {
-            console.log('Copying to clipboard was successful!');
-            window.location.href = "https://jahez.link/EFoKQj3nlHb";
-          }, function(err) {
-            console.error('Could not copy text:', err);
-          });
+        var button2 = document.getElementById('copyButton2');
+        button2.style.display = 'block';
+        const couponCode = await fetchRandomCoupon();
+        button2.textContent = couponCode;
+        button.onclick = async function() {
+          try {
+            //const couponCode = await fetchRandomCoupon();
+            navigator.clipboard.writeText(couponCode).then(function() {
+              console.log('Copying to clipboard was successful!');
+              window.location.href = "https://jahez.link/EFoKQj3nlHb";
+            }, function(err) {
+              console.error('Could not copy text:', err);
+            });
+          } catch (error) {
+            console.error('Error fetching coupon:', error);
+            alert('Failed to fetch coupon. Please try again.');
+          }
         };
       }
     };
@@ -35777,7 +35805,7 @@ function initCameraKit() {
 
     const session = await cameraKit.createSession();
     document.getElementById('canvas').replaceWith(session.output.live);
-    const { lenses } = await cameraKit.lensRepository.loadLensGroups(['f6ec2d36-229a-49c7-ba9d-847d7f287515']); // Replace with your actual lens group ID
+    const { lenses } = await cameraKit.lensRepository.loadLensGroups(['89366888-bfd1-48ef-b8dc-c820fceba6c1']); // Replace with your actual lens group ID
     session.applyLens(lenses[0]);
 
     const source = createMediaStreamSource(mediaStream, { cameraType: 'back' });

@@ -5,10 +5,11 @@
     <title>Jahez Leap Project</title>
     <link href="index.css" rel="stylesheet">
     <link rel="icon" href="assets/logo.png" type="image/png">
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-    <!-- Add Firebase Realtime Database -->
-    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+    <script type="module" src="firebaseConfig.js"></script>
+
 </head>
 <body>
     <canvas id="canvas"></canvas>
@@ -16,35 +17,9 @@
 
     <!-- Add the button here, initially hidden -->
     <button id="copyButton" style="display: none;">Copy</button>
-
+    <button id="copyButton2" style="display: none;">CopyCode</button>
+    
     <script src="./packed.js"></script>
-    <script src="./main.js"></script>
-    <script>
-    // TODO: Replace the following with your app's Firebase project configuration
-    const firebaseConfig = {
-        apiKey: "AIzaSyBlnPWxGnDvy6fRs49gHxOyKUNOyYgxNUE",
-        authDomain: "jahez-coupon.firebaseapp.com",
-        projectId: "jahez-coupon",
-        storageBucket: "jahez-coupon.appspot.com",
-        messagingSenderId: "40997728682",
-        appId: "1:40997728682:web:8a62070633298c06d0fbd3"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // Example function to fetch coupon code, replace 'path/to/coupon' with your actual data path
-    function fetchCouponCode() {
-        const database = firebase.database();
-        const couponRef = database.ref('path/to/coupon');
-        couponRef.once('value', (snapshot) => {
-            const couponCode = snapshot.val();
-            console.log("Coupon Code: ", couponCode);
-            // Here you can implement code to display the coupon code
-        });
-    }
-
-    // Call fetchCouponCode() where it makes sense in your app's flow
-    </script>
+    <script type="module" src="./main.js"></script>
 </body>
 </html>
