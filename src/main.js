@@ -8,8 +8,8 @@ import {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 25.25415236839695, // Replace with your target latitude
-  longitude: 46.38706863725764, // Replace with your target longitude
+  latitude: 28.451118668008082,  // Replace with your target latitude
+  longitude: 77.09651264064091, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
