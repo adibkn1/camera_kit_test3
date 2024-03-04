@@ -8,8 +8,8 @@ import {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 28.451118668008082,  // Replace with your target latitude
-  longitude: 77.09651264064091, // Replace with your target longitude
+  latitude: 28.45426869482925, // Replace with your target latitude
+  longitude: 77.08076166671668, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -25,12 +25,6 @@ function calculateDistance(lat1, lon1, lat2, lon2) {
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
   const distance = R * c; // in metres
-
-  console.log('Intermediate values:');
-  console.log('a:', a);
-  console.log('c:', c);
-  console.log('Distance:', distance);
-
   return distance;
 }
 
@@ -98,10 +92,10 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 10000) { // Check if within 2 km
+      if (distance <= 2000) { // Check if within 2 km
         initCameraKit();
       } else {
-        alert("Join us at LEAP! This game is only available inside the LEAP venue.");
+        alert("Sorry, you're outside the 2km range of the target location.");
       }
     }, function(error) {
       alert(`ERROR(${error.code}): ${error.message}`);
