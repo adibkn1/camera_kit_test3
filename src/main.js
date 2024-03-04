@@ -1,3 +1,4 @@
+
 import {
   bootstrapCameraKit,
   createMediaStreamSource,
@@ -7,8 +8,8 @@ import {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 28.45426869482925, // Replace with your target latitude
-  longitude: 77.08076166671668, // Replace with your target longitude
+  latitude: 24.753072653050943, // Replace with your target latitude
+  longitude: 46.72677739355023, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -33,40 +34,20 @@ function initCameraKit() {
     const customService = {
       apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
       getRequestHandler: function(request) {
-        // Fetch a random unredeemed coupon from Firestore
-        window.db.collection('coupons').where('redeemed', '==', false).limit(1).get()
-          .then(snapshot => {
-            if (!snapshot.empty) {
-              // Assuming each coupon document has 'code' and 'redeemed' fields
-              let doc = snapshot.docs[0];
-              let couponCode = doc.data().code;
-              
-              // Show the button
-              var button = document.getElementById('copyButton');
-              button.style.display = 'block';
-      
-              // Button click event
-              button.onclick = function() {
-                // Copy coupon code to clipboard
-                navigator.clipboard.writeText(couponCode).then(function() {
-                  console.log('Copying to clipboard was successful!');
-      
-                  // Mark the coupon as redeemed
-                  db.collection('coupons').doc(doc.id).update({redeemed: true});
-      
-                  // Redirect
-                  window.location.href = "https://jahez.link/EFoKQj3nlHb";
-                }, function(err) {
-                  console.error('Could not copy text:', err);
-                });
-              };
-            } else {
-              console.log('No unredeemed coupons found.');
-            }
-          })
-          .catch(error => {
-            console.log("Error getting documents: ", error);
+        // Show the button when this function is triggered
+        var button = document.getElementById('copyButton');
+        button.style.display = 'block'; // Make the button visible
+
+        // Ensure the click event listener is only attached once
+        button.onclick = function() {
+          // Copy text to clipboard and redirect
+          navigator.clipboard.writeText("PROMO CODE HERE").then(function() {
+            console.log('Copying to clipboard was successful!');
+            window.location.href = "https://jahez.link/EFoKQj3nlHb";
+          }, function(err) {
+            console.error('Could not copy text:', err);
           });
+        };
       }
     };
 
@@ -110,10 +91,10 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 20000000000) { // Check if within 2 km
+      if (distance <= 2000) { // Check if within 2 km
         initCameraKit();
       } else {
-        alert("Sorry, you're outside the 2km range of the target location.");
+        alert("Join us at LEAP! This game is only available inside the LEAP venue.");
       }
     }, function(error) {
       alert(`ERROR(${error.code}): ${error.message}`);
