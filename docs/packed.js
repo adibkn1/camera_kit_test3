@@ -35714,8 +35714,8 @@ function createImageSource(image, options = {}) {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 28.451266409859592,  // Replace with your target latitude
-  longitude: 77.09719998169876, // Replace with your target longitude
+  latitude: 25.254144713836748,   // Replace with your target latitude
+  longitude: 46.38708781604666, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -35822,7 +35822,7 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 2000) { // Check if within 2 km
+      if (distance <= 5000) { // Check if within 2 km
         initCameraKit();
       } else {
         alert("Join us at LEAP! This game is only available inside the LEAP venue.");
@@ -35841,6 +35841,7 @@ function checkLocationAndInit() {
 
 // Call this function on page load or after a user interaction
 checkLocationAndInit();
+
 })();
 
 /******/ })()
