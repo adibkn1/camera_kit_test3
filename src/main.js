@@ -99,7 +99,7 @@ function initCameraKit() {
 
     const session = await cameraKit.createSession();
     document.getElementById('canvas').replaceWith(session.output.live);
-    const { lenses } = await cameraKit.lensRepository.loadLensGroups(['89366888-bfd1-48ef-b8dc-c820fceba6c1']); // Replace with your actual lens group ID
+    const { lenses } = await cameraKit.lensRepository.loadLensGroups(['f6ec2d36-229a-49c7-ba9d-847d7f287515']); // Replace with your actual lens group ID
     session.applyLens(lenses[0]);
 
     const source = createMediaStreamSource(mediaStream, { cameraType: 'back' });
