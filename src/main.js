@@ -8,8 +8,8 @@ import {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 25.254144713836748,   // Replace with your target latitude
-  longitude: 46.38708781604666, // Replace with your target longitude
+  latitude: 28.451266409859592,  // Replace with your target latitude
+  longitude: 77.09719998169876, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -58,13 +58,16 @@ function initCameraKit() {
         var button = document.getElementById('copyButton');
         button.style.display = 'block';
 
+        var button2 = document.getElementById('copyButton2');
+        button2.style.display = 'block';
+        const couponCode = await fetchRandomCoupon();
+        button2.textContent = couponCode;
         button.onclick = async function() {
           try {
-            window.location.href = "https://jahez.link/EFoKQj3nlHb";
-            const couponCode = await fetchRandomCoupon();
+            //const couponCode = await fetchRandomCoupon();
             navigator.clipboard.writeText(couponCode).then(function() {
               console.log('Copying to clipboard was successful!');
-              //window.location.href = "https://jahez.link/EFoKQj3nlHb";
+              window.location.href = "https://jahez.link/EFoKQj3nlHb";
             }, function(err) {
               console.error('Could not copy text:', err);
             });
@@ -96,7 +99,7 @@ function initCameraKit() {
 
     const session = await cameraKit.createSession();
     document.getElementById('canvas').replaceWith(session.output.live);
-    const { lenses } = await cameraKit.lensRepository.loadLensGroups(['f6ec2d36-229a-49c7-ba9d-847d7f287515']); // Replace with your actual lens group ID
+    const { lenses } = await cameraKit.lensRepository.loadLensGroups(['89366888-bfd1-48ef-b8dc-c820fceba6c1']); // Replace with your actual lens group ID
     session.applyLens(lenses[0]);
 
     const source = createMediaStreamSource(mediaStream, { cameraType: 'back' });
@@ -116,7 +119,7 @@ function checkLocationAndInit() {
         targetLocation.longitude
       );
 
-      if (distance <= 5000) { // Check if within 2 km
+      if (distance <= 2000) { // Check if within 2 km
         initCameraKit();
       } else {
         alert("Join us at LEAP! This game is only available inside the LEAP venue.");
