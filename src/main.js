@@ -8,8 +8,8 @@ import {
 
 // Define your target location coordinates
 const targetLocation = {
-  latitude: 28.454253216960605, // Replace with your target latitude
-  longitude: 77.08076148081332, // Replace with your target longitude
+  latitude: 25.254148963470538,   // Replace with your target latitude
+  longitude: 46.3870724557909, // Replace with your target longitude
 };
 
 function calculateDistance(lat1, lon1, lat2, lon2) {
@@ -70,7 +70,7 @@ function initCameraKit() {
       console.log("User has already accessed the app. Exiting initialization.");
       return;
     }
-
+    
     const customService = {
       apiSpecId: "e3c8d937-6891-423a-b1ee-6c4aef8ed598",
       getRequestHandler: async function(request) {
